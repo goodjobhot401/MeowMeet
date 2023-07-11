@@ -1,0 +1,32 @@
+<div class="fixed-left text-dark bg-secondary bg-opacity-10" style="height: 100vh; overflow:auto;">
+  {{#if loginUser}}
+
+  {{else}}
+  <div class="d-flex flex-column align-items-center p-3 border">
+    <div class="mb-3 user-avatar">
+      <img src="/public/_base/avatar.jpg" alt="">
+      <div class="user-account">@tomyung</div>
+    </div>
+    <div class="mb-3 text-16px-med">
+      <a href="">
+        <h6>搜尋街貓</h6>
+      </a>
+    </div>
+    <div class="mb-3 text-16px-med">
+      <a href="">
+        <h6>我的街貓</h6>
+      </a>
+    </div>
+    <div class="mb-3 text-16px-med">
+      <a href="">
+        <h6>上傳街貓</h6>
+      </a>
+    </div>
+    <div class="mb-3 text-16px-med">
+      <a href="">
+        <h6>刊登協尋</h6>
+      </a>
+    </div>
+  </div>
+  {{/if}}
+</div>
