@@ -1,12 +1,19 @@
 <div class="search-zone mt-3" style="width: 90%; margin: 0 auto;">
   <div class="search-bar mb-3 d-flex">
-    <input type="text" class="form-input input text-16px-reg me-3" placeholder="輸入想查詢的地址">
-    <button class="pill-main pill-small">查詢</button>
+    <input type="text" name="address" id="search-form" class="form-input input text-16px-reg me-3"
+      placeholder="輸入想查詢的地址">
+    <button class="pill-main pill-small" id="search-button" type="submit">查詢</button>
   </div>
 
-  <div class="search-map mb-3 border">
-    我是地圖
-  </div>
+  <div id="map" class="mb-3 border"></div>
+  <script> var map
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 25.03369, lng: 121.564128 },
+        zoom: 12
+      })
+    }
+  </script>
 
   <div class="search-panel mb-3 border">
     我是搜尋結果
