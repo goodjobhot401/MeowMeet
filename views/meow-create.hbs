@@ -19,38 +19,103 @@
     </div>
     {{!-- 性別 --}}
     <div class="form-row mb-2">
-      <label class="form-label text-14px-reg color-dark-80" for="email">性別</label>
-      <input class="form-input text-16px-reg" id="email" type="email" name="email" placeholder="請輸入Email"
-        value="{{ email }}" required>
-    </div>
-    <!-- 結紮 -->
-    <div class="mt-3 mb-2">
-      <fieldset class="form-group" id="neuter" name="neuter">
-        <legend class="form-label text-14px-reg color-dark-80" for="neuter">結紮</legend>
+      <fieldset class="form-group" id="gender" name="gender">
+        <legend class="form-label text-14px-reg color-dark-80" for="gender">性別</legend>
+        <div class="d-flex mt-1">
+          <div class="form-check form-check-inline">
+            <input class="" name="gender" type="radio" id="male" value="gender">
+            <label class="form-check-label text-14px-reg color-dark-80" for="gender">
+              公
+            </label>
+          </div>
 
-        <div class="form-check form-check-inline">
-          <input class="" name="neuter" type="radio" id="neuterd" value="neuterd">
-          <label class="form-check-label text-14px-reg color-dark-80" for="neuterd">
-            已結紮
-          </label>
-        </div>
+          <div class="form-check form-check-inline">
+            <input class="" name="gender" type="radio" id="female" value="female">
+            <label class="form-check-label text-14px-reg color-dark-80" for="female">
+              母
+            </label>
+          </div>
 
-        <div class="form-check form-check-inline">
-          <input class="" name="neuter" type="radio" id="unNeutered" value="unNeutered">
-          <label class="form-check-label text-14px-reg color-dark-80" for="unNeutered">
-            未結紮
-          </label>
-        </div>
-
-        <div class="form-check form-check-inline">
-          <input class="" name="neuter" type="radio" id="unknown" value="unknown">
-          <label class="form-check-label text-14px-reg color-dark-80" for="unknown">
-            不清楚
-          </label>
+          <div class="form-check form-check-inline">
+            <input class="" name="gender" type="radio" id="unknown" value="unknown">
+            <label class="form-check-label text-14px-reg color-dark-80" for="unknown">
+              不清楚
+            </label>
+          </div>
         </div>
       </fieldset>
     </div>
 
+    <!-- 結紮 -->
+    <div class="form-row mb-2">
+      <fieldset class="form-group" id="neuter" name="neuter">
+        <legend class="form-label text-14px-reg color-dark-80" for="neuter">結紮</legend>
+        <div class="d-flex mt-1">
+          <div class="form-check form-check-inline">
+            <input class="" name="neuter" type="radio" id="neuterd" value="neuterd">
+            <label class="form-check-label text-14px-reg color-dark-80" for="neuterd">
+              已結紮
+            </label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="" name="neuter" type="radio" id="unNeutered" value="unNeutered">
+            <label class="form-check-label text-14px-reg color-dark-80" for="unNeutered">
+              未結紮
+            </label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="" name="neuter" type="radio" id="unknown" value="unknown">
+            <label class="form-check-label text-14px-reg color-dark-80" for="unknown">
+              不清楚
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    {{!-- 親人程度 --}}
+    <div class="form-row mb-2">
+      <fieldset class="form-group" id="friendly" name="friendly">
+        <legend class="form-label text-14px-reg color-dark-80" for="friendly">親人程度</legend>
+        <div class="d-flex mt-1">
+          <div class="form-check form-check-inline">
+            <input class="" name="friendly" type="radio" id="1" value="1">
+            <label class="form-check-label text-14px-reg color-dark-80" for="1">
+              1
+            </label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="" name="friendly" type="radio" id="2" value="2">
+            <label class="form-check-label text-14px-reg color-dark-80" for="2">
+              2
+            </label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="" name="friendly" type="radio" id="3" value="3">
+            <label class="form-check-label text-14px-reg color-dark-80" for="3">
+              3
+            </label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="" name="friendly" type="radio" id="4" value="4">
+            <label class="form-check-label text-14px-reg color-dark-80" for="4">
+              4
+            </label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="" name="friendly" type="radio" id="5" value="5">
+            <label class="form-check-label text-14px-reg color-dark-80" for="5">
+              5
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
     {{!-- 花色 --}}
     <div class="form-row mb-2">
       <label class="form-label text-14px-reg color-dark-80" for="color">花色</label>
@@ -66,12 +131,6 @@
         <option>棕底虎班</option>
         <option>其他</option>
       </select>
-    </div>
-    {{!-- 親人程度 --}}
-    <div class="form-row mb-2">
-      <label class="form-label text-14px-reg color-dark-80" for="password">親人程度</label>
-      <input class="form-input text-16px-reg" id="password" type="password" name="password" placeholder="請輸入密碼"
-        value="{{ password }}" required>
     </div>
     {{!-- 預估年紀 --}}
     <div class="form-row mb-2">
