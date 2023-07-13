@@ -13,34 +13,38 @@ function initMap(latitude, longitude) {
 
 if (searchForm && searchButton) {
   searchButton.addEventListener('click', async () => {
-    // 獲取用戶輸入的地址
-    const address = searchForm.value
+    try {
+      // 獲取用戶輸入的地址
+      const address = searchForm.value
 
-    // 向後端查詢 googleApi 金鑰
-    const result = await axios.get('/api/googleApi')
-    const geocodingApiKey = result.data.googleApi.geocodingApiKey
+      // 向後端查詢 googleApi 金鑰
+      const result = await axios.get('/api/googleApi')
+      const geocodingApiKey = result.data.googleApi.geocodingApiKey
 
-    // geocoding api 請求網址
-    const geocodingApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${geocodingApiKey}`
+      // geocoding api 請求網址
+      const geocodingApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${geocodingApiKey}`
 
-    // 發送 geocoding api 請求
-    axios.get(geocodingApiUrl)
-      .then(response => {
-        const results = response.data.results
-        console.log(response)
-        if (results.length > 0) {
-          const location = results[0].geometry.location
-          const latitude = location.lat
-          const longitude = location.lng
-          console.log('緯度：' + latitude)
-          console.log('經度：' + longitude)
+      // 發送 geocoding api 請求
+      const response = await axios.get(geocodingApiUrl)
+      const results = response.data.results
+      console.log(response)
 
-          // 渲染地圖
-          initMap(latitude, longitude)
-        } else {
-          console.log('找不到該地標地理位置')
-        }
-      })
-      .catch(err => console.log(err))
+      if (results.length > 0) {
+        const location = results[0].geometry.location
+        const latitude = location.lat
+        const longitude = location.lng
+        // const viewport = results[0].geometry.viewport
+        console.log('緯度：' + latitude)
+        console.log('經度：' + longitude)
+
+        // 渲染地圖
+        initMap(latitude, longitude)
+      } else {
+        console.log('找不到該地標地理位置')
+      }
+    } catch (err) {
+      console.log(err)
+    }
   })
 }
+
