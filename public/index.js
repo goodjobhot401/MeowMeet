@@ -17,7 +17,7 @@ function initMap(latitude, longitude) {
     console.log('新的中心位置經度：' + center.lng())
   })
 
-  // 創建 icon 
+  // 創建地圖中心點的 icon 
   icon = new google.maps.Marker({
     position: map.getCenter(),
     map: map,
@@ -25,9 +25,9 @@ function initMap(latitude, longitude) {
     icon: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'
   })
 
-  // 監聽地圖的 drag 事件
+  // 監聽地圖的拖移(drag)事件
   map.addListener('drag', function () {
-    // 更新圖標的位置為地圖的中心位置
+    // 更新 icon 的位置為地圖的中心位置
     icon.setPosition(map.getCenter())
   })
 }
