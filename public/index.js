@@ -6,8 +6,29 @@ function initMap(latitude, longitude) {
   map = new google.maps.Map(document.getElementById('map'), {
     latitude: 25.03369,
     longitude: 121.56412,
-    center: { lat: latitude, lng: longitude },
+    center: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
     zoom: 16
+  })
+
+  // 獲取地圖的中心位置
+  map.addListener('dragend', function () {
+    const center = map.getCenter()
+    console.log('新的中心位置緯度：' + center.lat())
+    console.log('新的中心位置經度：' + center.lng())
+  })
+
+  // 創建 icon 
+  icon = new google.maps.Marker({
+    position: map.getCenter(),
+    map: map,
+    draggable: false, // 設置為false，以禁止手動拖動圖標
+    icon: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+  })
+
+  // 監聽地圖的 drag 事件
+  map.addListener('drag', function () {
+    // 更新圖標的位置為地圖的中心位置
+    icon.setPosition(map.getCenter())
   })
 }
 
@@ -37,7 +58,7 @@ if (searchForm && searchButton) {
         console.log('緯度：' + latitude)
         console.log('經度：' + longitude)
 
-        // 渲染地圖
+        // 重新渲染地圖
         initMap(latitude, longitude)
       } else {
         console.log('找不到該地標地理位置')
