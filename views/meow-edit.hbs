@@ -4,7 +4,7 @@
     <a href="javascript:history.back()" class="pill-main pill-small">返回</a>
   </div>
 
-  <form class="form-control mb-4" action="/users/meows" method="POST" enctype="multipart/form-data"
+  <form class="form-control mb-4" action="/users/meows/{{meow.id}}" method="POST" enctype="multipart/form-data"
     style="position: relative; margin: 0 auto;">
     {{> meow-form}}
   </form>
