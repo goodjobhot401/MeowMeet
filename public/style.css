@@ -203,6 +203,15 @@ h6:hover {
   color: #171725;
 }
 
+.text-12px-reg-light {
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  color: #FF5290;
+}
+
 .text-12px-med {
   font-family: 'Noto Sans TC';
   font-style: normal;
@@ -384,6 +393,25 @@ button {
   color: #FF5290
 }
 
+.btn-pill-main {
+  border: 1px solid #FF5290;
+  background-color: #FF5290;
+  color: #FFFFFF;
+}
+
+.btn-pill-main:hover {
+  border: 1px solid #FF5290;
+  background-color: #FFFFFF;
+  color: #FF5290;
+}
+
+.btn-outline-main:hover {
+  background-color: #FF5290;
+  color: #FFFFFF;
+}
+
+
+
 /* ------------------------------     modal */
 
 .modal {
@@ -488,4 +516,14 @@ body {
   flex-grow: 1;
   width: 100%;
   /* border: 2px solid red; */
+}
+
+/* ------------------------------     position */
+.relative {
+  position: relative;
+}
+
+.sticky {
+  position: sticky;
+  left: 0px;
 }

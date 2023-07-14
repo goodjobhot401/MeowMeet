@@ -1,5 +1,8 @@
 const searchForm = document.getElementById('search-form') || null
 const searchButton = document.getElementById('search-button') || null
+const locationInput = document.getElementById('search-location') || null
+const latitudeForm = document.getElementById('latitude-form') || null
+const longitudeForm = document.getElementById('longitude-form') || null
 
 // 創建地圖
 function initMap(latitude, longitude) {
@@ -13,8 +16,10 @@ function initMap(latitude, longitude) {
   // 獲取地圖的中心位置
   map.addListener('dragend', function () {
     const center = map.getCenter()
-    console.log('新的中心位置緯度：' + center.lat())
-    console.log('新的中心位置經度：' + center.lng())
+    console.log('新的中心位置緯度：' + center.lat().toFixed(6))
+    console.log('新的中心位置經度：' + center.lng().toFixed(6))
+    latitudeForm.value = center.lat().toFixed(6)
+    longitudeForm.value = center.lng().toFixed(6)
   })
 
   // 創建地圖中心點的 icon 
@@ -32,11 +37,22 @@ function initMap(latitude, longitude) {
   })
 }
 
-if (searchForm && searchButton) {
-  searchButton.addEventListener('click', async () => {
+// search 頁 & create 頁的 searchButton 設立監聽器
+if (searchButton) {
+  searchButton.addEventListener('click', async (event) => {
+    // 預防刷新
+    event.preventDefault()
+
     try {
       // 獲取用戶輸入的地址
-      const address = searchForm.value
+      let address = ''
+      if (searchForm) {
+        address = searchForm.value
+      } else if (searchForm === null && locationInput) {
+        address = locationInput.value
+      } else {
+        address = '台灣'
+      }
 
       // 向後端查詢 googleApi 金鑰
       const result = await axios.get('/api/googleApi')
