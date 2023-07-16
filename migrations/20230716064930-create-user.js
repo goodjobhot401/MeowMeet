@@ -21,7 +21,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       avatar: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: 'https://imgur.com/gallery/mchXhL0'
       },
       role: {
         type: Sequelize.BOOLEAN,
