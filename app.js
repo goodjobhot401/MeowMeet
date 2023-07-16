@@ -9,6 +9,7 @@ const routes = require('./routes')
 const googleApi = require('./googleApi')
 const app = express()
 const port = process.env.PORT || 3000
+const db = require('./models')
 
 app.use(express.static('public'))
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
