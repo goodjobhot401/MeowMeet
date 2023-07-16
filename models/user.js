@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       User.hasMany(models.Meow, { foreignKey: 'userId' })
+      User.hasMany(models.Reply, { foreignKey: 'userId' })
     }
   };
   User.init({
@@ -23,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
-    tableName: 'Users'
+    tableName: 'Users',
+    underscored: true
   })
   return User
 }
