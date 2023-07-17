@@ -159,18 +159,18 @@
   <div class="d-flex mt-1">
     <div class="ms-2">
       <span class="text-12px-reg color-dark-80">緯度</span>
-      <input class="latitude-form" type="text" id="latitude-form" name="latitude" readonly>
+      <input class="latitude-form" type="text" id="latitude-form" name="latitude" readonly required>
     </div>
     <div class="ms-5">
       <span class="text-12px-reg color-dark-80">經度</span>
-      <input class="longitude-form" type="text" id="longitude-form" name="longitude" readonly>
+      <input class="longitude-form" type="text" id="longitude-form" name="longitude" readonly required>
     </div>
   </div>
   <div class="location-form mt-2">
     <form>
       <div class="col-10 me-3" style="float: left;">
         <input class="form-input text-16px-reg" id="search-location" type="text" name="location"
-          placeholder="請輸入地址或拖移下列地圖" value="{{ meow.location }}" required>
+          placeholder="請輸入地址或拖移下列地圖" value="{{ meow.location }}">
       </div>
       <div class="col-auto me-2">
         <button class="btn btn-pill-main pt-1 pb-1" id="search-button" type="submit">搜尋</button>
