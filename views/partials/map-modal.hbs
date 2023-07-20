@@ -1,0 +1,57 @@
+{{!-- google map 定位用 modal --}}
+<div class="modal fade" id="findLocationModal" aria-hidden="true" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        {{!-- 關閉 Modal 按鈕 --}}
+        <div class="d-flex align-items-center">
+          <button type="button" data-bs-dismiss="modal" aria-label="Close" class="d-inline">
+            <img class="ms-2 me-3 svg-fill-main" src="/_base/Property 2=outlined, Property 3=close.svg">
+          </button>
+          <span class="text-16px-reg-light">請輸入地址再拖移地圖中心點，定位正確的經緯度</span>
+        </div>
+      </div>
+      {{!-- 定位區 --}}
+
+      <div class="location-form mt-2 ms-3">
+        <form>
+          <div class="col-10 me-3" style="float: left;">
+            <input class="form-input text-16px-reg" id="search-location" type="text" name="location"
+              placeholder="請輸入地址或拖移下列地圖" value="{{ meow.location }}">
+          </div>
+          <div class="col-auto me-2">
+            <button class="btn btn-pill-main pt-1 pb-1" id="search-button" type="submit">搜尋</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="d-flex mt-2 ms-3">
+        <div class="ms-2">
+          <span class="text-12px-reg color-dark-80">緯度</span>
+          <input class="latitude-form" type="text" id="latitude-form" name="latitude" readonly>
+        </div>
+        <div class="ms-5">
+          <span class="text-12px-reg color-dark-80">經度</span>
+          <input class="longitude-form" type="text" id="longitude-form" name="longitude" readonly>
+        </div>
+      </div>
+      {{!-- google map viewport --}}
+      <div id="map" class="form-control m-3" style="width: auto;"></div>
+
+      {{!-- 確定按鈕 --}}
+      <div class="d-flex mb-2 justify-content-center">
+        <button type="button" data-bs-dismiss="modal" aria-label="Close" class="d-inline pill-small pill-main">
+          確定
+        </button>
+      </div>
+
+
+      {{!-- 待改區 --}}
+      {{!-- <div class="modal-footer" style="border:0px">
+        <form action="/tweets" method="POST" enctype="multipart/form-data">
+          <button type="submit" class="pill-default pill-main">推文</button>
+        </form>
+      </div> --}}
+    </div>
+  </div>
+</div>

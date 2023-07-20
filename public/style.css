@@ -221,6 +221,15 @@ h6:hover {
   color: #171725;
 }
 
+.text-16px-reg-light {
+  font-family: 'Noto Sans TC';
+  font-style: Medium;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #FF5290;
+}
+
 .text-16px-med-Montserrat {
   font-family: 'Montserrat';
   font-style: Medium;
@@ -415,12 +424,8 @@ button {
 /* ------------------------------     modal */
 
 .modal {
-  position: relative;
-  left: 0;
-}
-
-.modal-twitter {
-  border-radius: 14px !important;
+  position: fixed;
+  top: 100px;
 }
 
 /* ------------------------------     刪除頁面上的滑動bar */

@@ -1,22 +1,13 @@
 <div class="search-zone mt-3" style="width: 65%; margin: 0 auto;">
   {{> messages}}
+  {{> map-modal}}
   <div class="button-back mb-3 d-flex flex-row-reverse">
     <a href="javascript:history.back()" class="pill-main pill-small">返回</a>
   </div>
-
   <form class="form-control mb-4" action="/users/meows" method="POST" enctype="multipart/form-data"
     style="position: relative; margin: 0 auto;">
     {{> meow-form}}
   </form>
 
-  <script> var map
-    var icon
-    function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 25.03369, lng: 121.564128 },
-        zoom: 12
-      })
-    }
-  </script>
 
 </div>

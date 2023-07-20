@@ -1,8 +1,12 @@
 const searchForm = document.getElementById('search-form') || null
 const searchButton = document.getElementById('search-button') || null
-const locationInput = document.getElementById('search-location') || null
+const searchLocation = document.getElementById('search-location') || null
+const locationInput = document.getElementById('locationInput') || null
+const latitudeInput = document.getElementById('latitudeInput') || null
+const longitudeInput = document.getElementById('longitudeInput') || null
 const latitudeForm = document.getElementById('latitude-form') || null
 const longitudeForm = document.getElementById('longitude-form') || null
+
 
 // 創建地圖
 function initMap(latitude, longitude) {
@@ -18,6 +22,8 @@ function initMap(latitude, longitude) {
     const center = map.getCenter()
     console.log('新的中心位置緯度：' + center.lat().toFixed(6))
     console.log('新的中心位置經度：' + center.lng().toFixed(6))
+    latitudeInput.value = center.lat().toFixed(6)
+    longitudeInput.value = center.lng().toFixed(6)
     latitudeForm.value = center.lat().toFixed(6)
     longitudeForm.value = center.lng().toFixed(6)
   })
@@ -37,7 +43,7 @@ function initMap(latitude, longitude) {
   })
 }
 
-// search 頁 & create 頁的 searchButton 設立監聽器
+// search 頁 & create 頁 & edit 頁的 searchButton 設立監聽器
 if (searchButton) {
   searchButton.addEventListener('click', async (event) => {
     // 預防刷新
@@ -48,8 +54,9 @@ if (searchButton) {
       let address = ''
       if (searchForm) {
         address = searchForm.value
-      } else if (searchForm === null && locationInput) {
-        address = locationInput.value
+      } else if (searchForm === null && searchLocation) {
+        address = searchLocation.value
+        locationInput.value = address
       } else {
         address = '台灣'
       }
@@ -79,9 +86,11 @@ if (searchButton) {
       } else {
         console.log('找不到該地標地理位置')
       }
-    } catch (err) {
+    } catch {
       console.log(err)
     }
   })
 }
 
+// create 頁與 edit 頁的 google-map-modal
+const findLocationModal = document.getElementById('findLocationModal') || null

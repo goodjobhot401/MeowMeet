@@ -13,7 +13,7 @@ router.get('/api/googleApi', (req, res, next) => {
 
 router.get('/users/meows/create', meowController.creatMeow)
 
-// router.post('/users/meows', upload.single('avatar'), meowController.postMeow)
+router.post('/users/meows', upload.single('avatar'), meowController.postMeow)
 
 router.get('/search', meowController.searchMeows)
 

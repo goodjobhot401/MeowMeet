@@ -1,6 +1,6 @@
 {{!-- 街貓暱稱 --}}
-<div class="form-row mb-2">
-  <label class="form-label text-14px-reg color-dark-80" for="name"><i class="fa-solid fa-paw me-1"
+<div class="form-row mb-2 pb-2">
+  <label class="form-label text-14px-reg color-dark-80 mb-2" for="name"><i class="fa-solid fa-paw me-1"
       style="color: #ff5290;"></i>街貓暱稱</label>
   <input class="form-input text-16px-reg" id="name" type="text" name="name" placeholder="請輸入街貓暱稱"
     value="{{ meow.name }}" required>
@@ -118,8 +118,8 @@
 </div>
 
 {{!-- 花色 --}}
-<div class="form-row mb-2">
-  <label class="form-label text-14px-reg color-dark-80" for="color"><i class="fa-solid fa-paw me-1"
+<div class="form-row mb-2 pb-2">
+  <label class="form-label text-14px-reg color-dark-80 mb-2" for="color"><i class="fa-solid fa-paw me-1"
       style="color: #ff5290;"></i>花色</label>
   <select class="form-control" id="color" name="color" required>
     <option>白貓</option>
@@ -136,50 +136,46 @@
 </div>
 
 {{!-- 預估年紀 --}}
-<div class="form-row mb-2">
-  <label class="form-label text-14px-reg color-dark-80" for="age"><i class="fa-solid fa-paw me-1"
+<div class="form-row mb-2 pb-2">
+  <label class="form-label text-14px-reg color-dark-80 mb-2" for="age"><i class="fa-solid fa-paw me-1"
       style="color: #ff5290;"></i>預估年紀</label>
   <input class="form-input text-16px-reg" id="age" name="age" placeholder="請輸入預估年紀" value="{{ meow.age }}" required>
 </div>
 
-{{!-- 簡介 --}}
-<div class="form-row mb-2">
-  <label class="form-label text-14px-reg color-dark-80" for="intro"><i class="fa-solid fa-paw me-1"
-      style="color: #ff5290;"></i>簡介</label>
-  <textarea class="form-control text-16px-reg" id="intro" name="intro" required>{{ meow.intro }}</textarea>
-</div>
-
 {{!-- 出沒地址 --}}
-<div class="form-row mb-2">
-  <label class="form-label text-14px-reg color-dark-80" for="location">
+<div class="form-row mb-2 pb-2">
+  <label class="form-label text-14px-reg color-dark-80 mb-2" for="location">
     <i class="fa-solid fa-paw me-1" style="color: #ff5290;"></i>
     出沒地址
-    <span class="text-12px-reg-light">(輸入地址或拖移下列地圖　以定位經緯度)</span>
+    <span class="text-12px-reg-light">(點選定位查詢經緯度)</span>
   </label>
-  <div class="d-flex mt-1">
-    <div class="ms-2">
+  <div class="d-flex flex-wrap mt-1 align-items-center">
+    <div class="ms-3">
       <span class="text-12px-reg color-dark-80">緯度</span>
-      <input class="latitude-form" type="text" id="latitude-form" name="latitude" readonly required>
+      <input type="text" id="latitudeInput" name="latitude" readonly required>
     </div>
-    <div class="ms-5">
+    <div class="ms-3">
       <span class="text-12px-reg color-dark-80">經度</span>
-      <input class="longitude-form" type="text" id="longitude-form" name="longitude" readonly required>
+      <input type="text" id="longitudeInput" name="longitude" readonly required>
     </div>
+    <div class="ms-3">
+      <button type="button" class="findLocationModal pill-small pill-main pt-0" data-bs-toggle="modal"
+        data-bs-target="#findLocationModal">定位
+      </button>
+    </div>
+    <input class="d-none" id="locationInput" type="text" name="location">
   </div>
-  <div class="location-form mt-2">
-    <form>
-      <div class="col-10 me-3" style="float: left;">
-        <input class="form-input text-16px-reg" id="search-location" type="text" name="location"
-          placeholder="請輸入地址或拖移下列地圖" value="{{ meow.location }}">
-      </div>
-      <div class="col-auto me-2">
-        <button class="btn btn-pill-main pt-1 pb-1" id="search-button" type="submit">搜尋</button>
-      </div>
-    </form>
-  </div>
-  {{!-- google map viewport --}}
-  <div id="map" class="form-control mt-2 mb-3"></div>
+</div>
+
+{{!-- 簡介 --}}
+<div class="form-row mb-2 pb-2">
+  <label class="form-label text-14px-reg color-dark-80 mb-2" for="intro"><i class="fa-solid fa-paw me-1"
+      style="color: #ff5290;"></i>簡介</label>
+  <textarea class="form-control text-16px-reg" id="intro" name="intro" style="height: 100px;"
+    required>{{ meow.intro }}</textarea>
 </div>
 
 {{!-- 建立檔案 --}}
-<button class="pill-default pill-main mt-3 mb-3" id="create-button" type="submit">建立檔案</button>
+<div class="d-flex justify-content-center">
+  <button class="pill-default pill-main mt-3 mb-3" id="create-button" type="submit">建立檔案</button>
+</div>
