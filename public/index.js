@@ -7,6 +7,8 @@ const longitudeInput = document.getElementById('longitudeInput') || null
 const latitudeForm = document.getElementById('latitude-form') || null
 const longitudeForm = document.getElementById('longitude-form') || null
 
+// 創建地標資料
+let markers = []
 
 // 創建地圖
 function initMap(latitude, longitude) {
@@ -14,18 +16,37 @@ function initMap(latitude, longitude) {
     latitude: 25.03369,
     longitude: 121.56412,
     center: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
-    zoom: 16
+    zoom: 16,
+    style: customMapStyle
+  })
+
+  // 將搜尋後的街貓資料渲染到地圖
+  // markers 為包含陣列的陣列, 要取出當中的資料需要取第 0 項
+  const markerData = markers[0]
+  markerData.forEach(data => {
+    const marker = new google.maps.Marker({
+      position: { lat: Number(data.latitude), lng: Number(data.longitude) },
+      map: map,
+      title: data.name,
+      icon: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png'
+    })
   })
 
   // 獲取地圖的中心位置
   map.addListener('dragend', function () {
     const center = map.getCenter()
-    console.log('新的中心位置緯度：' + center.lat().toFixed(6))
-    console.log('新的中心位置經度：' + center.lng().toFixed(6))
-    latitudeInput.value = center.lat().toFixed(6)
-    longitudeInput.value = center.lng().toFixed(6)
-    latitudeForm.value = center.lat().toFixed(6)
-    longitudeForm.value = center.lng().toFixed(6)
+    console.log('新的中心位置緯度：' + parseFloat(center.lat().toFixed(6)))
+    console.log('新的中心位置經度：' + parseFloat(center.lng().toFixed(6)))
+
+    if (latitudeForm && longitudeForm) {
+      latitudeForm.value = parseFloat(center.lat().toFixed(6))
+      longitudeForm.value = parseFloat(center.lng().toFixed(6))
+    }
+
+    if (latitudeInput && longitudeInput) {
+      latitudeInput.value = parseFloat(center.lat().toFixed(6))
+      longitudeInput.value = parseFloat(center.lng().toFixed(6))
+    }
   })
 
   // 創建地圖中心點的 icon 
@@ -42,6 +63,23 @@ function initMap(latitude, longitude) {
     icon.setPosition(map.getCenter())
   })
 }
+
+// google map 客製化樣式
+const customMapStyle = [
+  {
+    "featureType": "poi.business",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "labels.text",
+    "stylers": [
+      { "visibility": "off" }
+    ]
+  }
+]
 
 // search 頁 & create 頁 & edit 頁的 searchButton 設立監聽器
 if (searchButton) {
@@ -77,9 +115,20 @@ if (searchButton) {
         const location = results[0].geometry.location
         const latitude = location.lat
         const longitude = location.lng
-        // const viewport = results[0].geometry.viewport
         console.log('緯度：' + latitude)
         console.log('經度：' + longitude)
+
+        // 取得地圖視窗範圍
+        const bounds = map.getBounds()
+        const ne = bounds.getNorthEast()
+        const sw = bounds.getSouthWest()
+        const viewport = {
+          northeast: ne,
+          southwest: sw
+        }
+
+        const data = await axios.post('/api/markerData', { viewport })
+        markers.push(data.data)
 
         // 重新渲染地圖
         initMap(latitude, longitude)
@@ -92,5 +141,3 @@ if (searchButton) {
   })
 }
 
-// create 頁與 edit 頁的 google-map-modal
-const findLocationModal = document.getElementById('findLocationModal') || null

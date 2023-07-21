@@ -1,20 +1,23 @@
 const express = require('express')
 const router = express.Router()
-const googleApi = require('../googleApi')
 const upload = require('../middleware/multer')
 
 // const userController = require('../controllers/user-controller')
+const apiController = require('../controllers/api-controller')
 const meowController = require('../controllers/meow-controller')
 
-router.get('/api/googleApi', (req, res, next) => {
-  const results = { googleApi }
-  return res.json(results)
-})
+// 使用 google map api 金鑰
+router.get('/api/googleApi', apiController.getGoogleApi)
 
+// 接收 google map viewport 並回傳 viewport 範圍內的資料
+router.post('/api/markerData', apiController.postViewport)
+
+// 上傳街貓頁
 router.get('/users/meows/create', meowController.creatMeow)
-
+// 上傳街貓
 router.post('/users/meows', upload.single('avatar'), meowController.postMeow)
 
+// 搜尋街貓頁
 router.get('/search', meowController.searchMeows)
 
 module.exports = router
