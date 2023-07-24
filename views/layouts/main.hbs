@@ -23,10 +23,11 @@
     rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/style.css">
   {{!-- axios --}}
-  <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script async defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   {{!-- google map --}}
-  <script defer src="https://maps.googleapis.com/maps/api/js?key={{googleMapsApiKey}}&callback=initMap">
-  </script>
+  <script defer
+    src="https://maps.googleapis.com/maps/api/js?key={{googleMapsApiKey}}&libraries=places&callback=initMap">
+    </script>
   {{!-- 自定義 --}}
   <script defer src="/index.js"></script>
 
@@ -51,9 +52,11 @@
       <div class="col-1 border">12</div>
 
       {{!-- 左側欄位 --}}
+
       <div class="col-2 p-0 relative bg-secondary bg-opacity-10" style="flex: 0 0 auto;">
         {{> profile}}
       </div>
+
       {{!-- 中間欄位 --}}
       <div class="col-8 p-0" style="flex: 1 0 auto;">
         {{> messages}}

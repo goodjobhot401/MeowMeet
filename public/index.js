@@ -17,19 +17,7 @@ function initMap(latitude, longitude) {
     longitude: 121.56412,
     center: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
     zoom: 16,
-    style: customMapStyle
-  })
-
-  // 將搜尋後的街貓資料渲染到地圖
-  // markers 為包含陣列的陣列, 要取出當中的資料需要取第 0 項
-  const markerData = markers[0]
-  markerData.forEach(data => {
-    const marker = new google.maps.Marker({
-      position: { lat: Number(data.latitude), lng: Number(data.longitude) },
-      map: map,
-      title: data.name,
-      icon: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png'
-    })
+    styles: customMapStyle
   })
 
   // 獲取地圖的中心位置
@@ -49,37 +37,81 @@ function initMap(latitude, longitude) {
     }
   })
 
-  // 創建地圖中心點的 icon 
+  // 創建地圖中心點的 icon
   icon = new google.maps.Marker({
     position: map.getCenter(),
-    map: map,
+    map,
     draggable: false, // 設置為false，以禁止手動拖動圖標
-    icon: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+    icon: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png'
   })
 
   // 監聽地圖的拖移(drag)事件
   map.addListener('drag', function () {
     // 更新 icon 的位置為地圖的中心位置
     icon.setPosition(map.getCenter())
+    // 重新渲染 icon
+    renderViewportMarker()
+  })
+
+  // 地圖初始化完成時觸發
+  google.maps.event.addListenerOnce(map, 'idle', function () {
+    renderViewportMarker()
   })
 }
 
 // google map 客製化樣式
 const customMapStyle = [
   {
-    "featureType": "poi.business",
-    "stylers": [
-      { "visibility": "off" }
+    featureType: 'poi.business',
+    stylers: [
+      {
+        visibility: 'off'
+      }
     ]
   },
   {
-    "featureType": "poi.park",
-    "elementType": "labels.text",
-    "stylers": [
-      { "visibility": "off" }
+    featureType: 'poi.park',
+    elementType: 'labels.text',
+    stylers: [
+      {
+        visibility: 'off'
+      }
     ]
   }
 ]
+
+// 渲染地圖範圍內的 marker
+async function renderViewportMarker() {
+  // 清除舊的 markers 陣列資料
+  markers = []
+
+  // 取得目前地圖 viewport 範圍
+  const bounds = map.getBounds()
+  const ne = bounds.getNorthEast()
+  const sw = bounds.getSouthWest()
+  const viewport = {
+    northeast: ne,
+    southwest: sw
+  }
+
+  // 向後端發送 viewport 範圍
+  const data = await axios.post('/api/markerData', { viewport })
+  markers.push(data.data)
+
+  // 將搜尋後的街貓資料渲染到地圖
+  // markers 為包含陣列的陣列, 要取出當中的資料需要取第 0 項
+  markers[0] = data.data
+  markers[0].forEach(data => {
+    const marker = new google.maps.Marker({
+      position: { lat: Number(data.latitude), lng: Number(data.longitude) },
+      map,
+      title: data.name,
+      icon: {
+        url: 'https://i.imgur.com/gjnnjkd.png'
+      }
+    })
+  })
+}
 
 // search 頁 & create 頁 & edit 頁的 searchButton 設立監聽器
 if (searchButton) {
@@ -115,20 +147,6 @@ if (searchButton) {
         const location = results[0].geometry.location
         const latitude = location.lat
         const longitude = location.lng
-        console.log('緯度：' + latitude)
-        console.log('經度：' + longitude)
-
-        // 取得地圖視窗範圍
-        const bounds = map.getBounds()
-        const ne = bounds.getNorthEast()
-        const sw = bounds.getSouthWest()
-        const viewport = {
-          northeast: ne,
-          southwest: sw
-        }
-
-        const data = await axios.post('/api/markerData', { viewport })
-        markers.push(data.data)
 
         // 重新渲染地圖
         initMap(latitude, longitude)
@@ -140,4 +158,3 @@ if (searchButton) {
     }
   })
 }
-
