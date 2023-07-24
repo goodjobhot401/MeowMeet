@@ -24,7 +24,7 @@ const apiController = {
       const markerData = await Meow.findAll({
         raw: true,
         nest: true,
-        attributes: ['id', 'name', 'gender', 'latitude', 'longitude', 'friendly', 'intro'],
+        attributes: ['id', 'name', 'avatar', 'gender', 'latitude', 'longitude', 'friendly', 'intro'],
         where: {
           latitude: {
             [Op.between]: [southwestLat, northeastLat]

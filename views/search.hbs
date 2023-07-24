@@ -24,27 +24,9 @@
       <i class="fa-solid fa-paw me-1" style="color: #ff5290;"></i>
       <span class="text-16px-reg-light">搜尋結果</span>
     </div>
-    <div class="card-body d-flex flex-wrap">
-      {{!-- {{#each meows}} --}}
-      <div class="card me-2 mb-3" style="width: 180px;">
-        <img src="https://i.imgur.com/8ztYpM0.jpeg" class="card-img-top" alt="...">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item text-center">
-            <span class="text-16px-med">咪寶 name {{ meow.name }}</span>
-            <i class="fa-solid fa-venus" style="color: #ff5290;"></i>
-            <i class="fa-solid fa-mars" style="color: #6551ff;"></i>
-          </li>
-          <li class="list-group-item"><span class="text-16px-reg">親人：{{meow.friendly}}</span>
-            {{!-- {{#times meow.friendly}} --}}
-            <i class="fa-solid fa-star" style="color: #ff5290;"></i>
-            {{!-- {{/times}} --}}
-          </li>
-          <li class="list-group-item"><span class="text-16px-reg">簡介：{{ meow.intro }}
-            </span></li>
-        </ul>
-      </div>
-      {{!-- {{/each}} --}}
+    <div class="card-body d-flex flex-wrap justify-content-evenly" id="searchResultsContainer">
 
     </div>
   </div>
+
 </div>
