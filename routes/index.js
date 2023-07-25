@@ -20,4 +20,7 @@ router.post('/users/meows', upload.single('avatar'), meowController.postMeow)
 // 搜尋街貓頁
 router.get('/search', meowController.searchMeows)
 
+// 街貓檔案頁
+router.get('/meows/:id', meowController.getMeow)
+
 module.exports = router

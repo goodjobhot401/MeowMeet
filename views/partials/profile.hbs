@@ -1,32 +1,30 @@
-<div class="text-dark sticky border" style="overflow:auto;">
-  {{#if loginUser}}
+{{#if loginUser}}
 
-  {{else}}
-  <div class="d-flex flex-column align-items-center p-3">
-    <div class="mb-5 user-avatar">
-      <img src="" alt="">
-      <div class="user-account">@tomyung</div>
-    </div>
-    <div class="mb-3 text-16px-med">
-      <a href="/search">
-        <h6>搜尋街貓</h6>
-      </a>
-    </div>
-    <div class="mb-3 text-16px-med">
-      <a href="">
-        <h6>我的街貓</h6>
-      </a>
-    </div>
-    <div class="mb-3 text-16px-med">
-      <a href="/users/meows/create">
-        <h6>上傳街貓</h6>
-      </a>
-    </div>
-    <div class="mb-3 text-16px-med">
-      <a href="">
-        <h6>刊登協尋</h6>
-      </a>
-    </div>
+{{else}}
+<div class="d-flex flex-column align-items-center p-3" style="height: 100%;">
+  <div class="mb-5 user-avatar">
+    <img src="" alt="">
+    <div class="user-account">@tomyung</div>
   </div>
-  {{/if}}
+  <div class="mb-3 text-16px-med">
+    <a href="/search">
+      <h6>搜尋街貓</h6>
+    </a>
+  </div>
+  <div class="mb-3 text-16px-med">
+    <a href="">
+      <h6>我的街貓</h6>
+    </a>
+  </div>
+  <div class="mb-3 text-16px-med">
+    <a href="/users/meows/create">
+      <h6>上傳街貓</h6>
+    </a>
+  </div>
+  <div class="mb-3 text-16px-med">
+    <a href="">
+      <h6>刊登協尋</h6>
+    </a>
+  </div>
 </div>
+{{/if}}

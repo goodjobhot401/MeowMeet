@@ -48,6 +48,25 @@ const meowController = {
       console.log(err)
       next(err)
     }
+  },
+
+  // 取得街貓檔案
+  getMeow: async (req, res, next) => {
+    try {
+      const id = req.params.id
+      const meow = await Meow.findByPk(id, {
+        raw: true,
+        nest: true,
+        attributes: ['id', 'name', 'gender', 'age', 'neuter', 'location', 'friendly', 'intro'],
+        where: { id: id }
+      })
+
+      console.log(meow)
+      res.render('meow', { meow })
+    } catch (error) {
+      console.error(error)
+      next(err)
+    }
   }
 
 }

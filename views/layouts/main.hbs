@@ -32,13 +32,13 @@
   <script defer src="/index.js"></script>
 
 
-<body class="d-flex flex-column h-100">
+<body>
   {{!-- 上方欄位 --}}
   {{> header}}
-  <main class="flex-shrink-0 pt-5" role="main">
-    <div class="row pt-2">
+  <main class="d-flex flex-column pt-5" role="main" style="height: 100%;">
+    <div class="row flex-grow-1 pt-2" style="height: 100%;">
       {{!-- 檢查用 --}}
-      <div class="col-1 border">1</div>
+      {{!-- <div class="col-1 border">1</div>
       <div class="col-1 border">2</div>
       <div class="col-1 border">3</div>
       <div class="col-1 border">4</div>
@@ -49,21 +49,19 @@
       <div class="col-1 border">9</div>
       <div class="col-1 border">10</div>
       <div class="col-1 border">11</div>
-      <div class="col-1 border">12</div>
+      <div class="col-1 border">12</div> --}}
 
       {{!-- 左側欄位 --}}
-
-      <div class="col-2 p-0 relative bg-secondary bg-opacity-10" style="flex: 0 0 auto;">
+      <div class="col-2 p-0 flex-column relative bg-secondary bg-opacity-10" style="flex: 0 0 auto;">
         {{> profile}}
       </div>
-
       {{!-- 中間欄位 --}}
       <div class="col-8 p-0" style="flex: 1 0 auto;">
         {{> messages}}
         {{{body}}}
       </div>
       {{!-- 右側欄位 --}}
-      <div class="col-2 p-0" style="flex: 0 0 auto;">
+      <div class="col-2 p-0 flex-column" style="flex: 0 0 auto;">
         {{> missings}}
       </div>
     </div>

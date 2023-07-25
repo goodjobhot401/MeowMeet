@@ -162,7 +162,7 @@ if (searchButton) {
   })
 }
 
-// 渲染搜尋結果欄
+// search 頁搜尋結果欄
 function renderSearchResults(data) {
   const container = document.getElementById('searchResultsContainer')
 
@@ -171,7 +171,8 @@ function renderSearchResults(data) {
 
   // 將搜尋結果的資料插入到容器中
   data.forEach(meow => {
-    const card = document.createElement('div')
+    const card = document.createElement('a')
+    card.href = `/meows/${meow.id}`
     card.className = 'card mb-3'
     card.style = 'width: 200px; height:360px; position: relative;'
 
