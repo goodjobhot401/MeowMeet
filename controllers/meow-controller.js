@@ -57,7 +57,7 @@ const meowController = {
       const meow = await Meow.findByPk(id, {
         raw: true,
         nest: true,
-        attributes: ['id', 'name', 'gender', 'age', 'neuter', 'location', 'friendly', 'intro'],
+        attributes: ['id', 'name', 'avatar', 'gender', 'age', 'neuter', 'location', 'friendly', 'intro'],
         where: { id: id }
       })
 
