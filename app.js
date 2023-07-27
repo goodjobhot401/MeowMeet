@@ -6,6 +6,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const session = require('express-session')
+const passport = require('./config/passport')
 const handlebarsHelper = require('./helpers/handlebar-helpers')
 const routes = require('./routes')
 const googleApi = require('./googleApi')
@@ -22,6 +23,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(methodOverride('_method'))
