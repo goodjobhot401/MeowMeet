@@ -1,29 +1,56 @@
-{{#if loginUser}}
-
-{{else}}
+{{#if user}}
 <div class="d-flex flex-column align-items-center p-3" style="height: 100%;">
-  <div class="mb-5 user-avatar">
-    <img src="" alt="">
-    <div class="user-account">@tomyung</div>
+  <div class="user-avatar mb-5">
+    <img src="{{user.avatar}}" class="user-avatar-img" alt="">
+    <span class="user-account text-16px-med-gray mt-2">@{{user.account}}</span>
   </div>
   <div class="mb-3 text-16px-med">
     <a href="/search">
-      <h6>搜尋街貓</h6>
+      <h6><i class="fa-solid fa-cat me-1"></i>搜尋街貓</h6>
     </a>
   </div>
   <div class="mb-3 text-16px-med">
-    <a href="">
-      <h6>我的街貓</h6>
+    <a href="/users/{{user.id}}/meows">
+      <h6><i class="fa-solid fa-cat me-1"></i>我的街貓</h6>
     </a>
   </div>
   <div class="mb-3 text-16px-med">
     <a href="/users/meows/create">
-      <h6>上傳街貓</h6>
+      <h6><i class="fa-solid fa-cat me-1"></i>上傳街貓</h6>
     </a>
   </div>
   <div class="mb-3 text-16px-med">
-    <a href="">
-      <h6>刊登協尋</h6>
+    <a href="/users/{{user.id}}/missings">
+      <h6><i class="fa-solid fa-cat me-1"></i>刊登協尋</h6>
+    </a>
+  </div>
+</div>
+{{else}}
+<div class="d-flex flex-column align-items-center p-3" style="height: 100%;">
+  <div class="user-avatar mb-5">
+    <img src="https://i.imgur.com/i7ru4dl.jpeg" class="user-avatar-img" alt="">
+    <a href="/signin" class="user-account mt-2">
+      <span class="text-16px-med-gray">登入享更多功能</span>
+    </a>
+  </div>
+  <div class="mb-3 text-16px-med">
+    <a href="/search">
+      <h6><i class="fa-solid fa-cat me-1"></i>搜尋街貓</h6>
+    </a>
+  </div>
+  <div class="mb-3 text-16px-med">
+    <a href="/">
+      <h6><i class="fa-solid fa-cat me-1"></i>我的街貓</h6>
+    </a>
+  </div>
+  <div class="mb-3 text-16px-med">
+    <a href="/">
+      <h6><i class="fa-solid fa-cat me-1"></i>上傳街貓</h6>
+    </a>
+  </div>
+  <div class="mb-3 text-16px-med">
+    <a href="/">
+      <h6><i class="fa-solid fa-cat me-1"></i>刊登協尋</h6>
     </a>
   </div>
 </div>

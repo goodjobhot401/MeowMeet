@@ -5,7 +5,7 @@ const upload = require('../middleware/multer')
 const userController = require('../controllers/user-controller')
 const apiController = require('../controllers/api-controller')
 const meowController = require('../controllers/meow-controller')
-const passport = require('passport')
+// const passport = require('passport')
 
 // 使用 google map api 金鑰
 router.get('/api/googleApi', apiController.getGoogleApi)
