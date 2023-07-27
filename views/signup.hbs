@@ -5,8 +5,7 @@
     <img src="https://i.imgur.com/esw7XVP.png" class="brand-logo-img" alt="">
   </div>
 
-  <form class="form-control mb-4" action="/signup" method="POST" enctype="multipart/form-data"
-    style="position: relative; margin: 0 auto;">
+  <form class="form-control mb-4" action="/signup" method="POST" style="position: relative; margin: 0 auto;">
 
     {{!-- 帳號 --}}
     <div class="form-row mb-2 pb-2">
@@ -42,7 +41,7 @@
 
     {{!-- 確認密碼 --}}
     <div class="form-row mb-2 pb-2">
-      <label class="form-label text-14px-reg color-dark-80 mb-2" for="password"><i class="fa-solid fa-paw me-1"
+      <label class="form-label text-14px-reg color-dark-80 mb-2" for="checkPassword"><i class="fa-solid fa-paw me-1"
           style="color: #ff5290;"></i>確認密碼</label>
       <input class="form-input text-16px-reg" id="checkPassword" type="password" name="checkPassword"
         placeholder="請再次輸入您的密碼..." value="{{ checkPassword }}" required>

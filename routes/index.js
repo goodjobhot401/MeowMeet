@@ -1,4 +1,5 @@
 const express = require('express')
+const { generalErrorHandler, apiErrorHandler } = require('../middleware/error-handler')
 const router = express.Router()
 const upload = require('../middleware/multer')
 
@@ -12,6 +13,9 @@ router.get('/api/googleApi', apiController.getGoogleApi)
 
 // 接收 google map viewport 並回傳 viewport 範圍內的資料
 router.post('/api/markerData', apiController.postViewport)
+
+// 前端錯誤提示
+// router.post('/api/error', apiController.postErrorMsg)
 
 // 上傳街貓頁
 router.get('/users/meows/create', meowController.creatMeow)
@@ -29,12 +33,16 @@ router.get('/signin', userController.signInPage)
 router.get('/signup', userController.signUpPage)
 
 // 註冊
-// router.post('/signup', userController.signUp)
+router.post('/signup', userController.signUp)
 
 // 搜尋街貓頁
 router.get('/search', meowController.searchMeows)
 
 // 街貓檔案頁
 router.get('/meows/:id', meowController.getMeow)
+
+// 錯誤處理
+router.use('/api', apiErrorHandler)
+router.use('/', generalErrorHandler)
 
 module.exports = router

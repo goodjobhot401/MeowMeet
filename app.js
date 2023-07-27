@@ -6,12 +6,12 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const session = require('express-session')
+const flash = require('connect-flash')
 const passport = require('./config/passport')
 const handlebarsHelper = require('./helpers/handlebar-helpers')
 const routes = require('./routes')
 const googleApi = require('./googleApi')
 const app = express()
-const flash = require('connect-flash')
 const port = process.env.PORT || 3000
 
 app.use(express.static('public'))

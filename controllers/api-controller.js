@@ -9,6 +9,21 @@ const apiController = {
     return res.json(results)
   },
 
+  // 錯誤提示處理
+  // postErrorMsg: (req, res, next) => {
+  //   try {
+  //     const { errorMsg } = req.body
+  //     console.log(errorMsg)
+  //     req.flash('error_messages', errorMsg)
+  //     if (errorMsg) throw new Error(`${errorMsg}`)
+  //     return res.json('回傳正常', { success: true })
+  //   } catch (err) {
+  //     req.flash('error_messages', `${errorMsg}`)
+  //     console.log('回傳失敗')
+  //     next(err)
+  //   }
+  // },
+
   // 取得 viewport 內的街貓資料
   postViewport: async (req, res, next) => {
     try {
@@ -34,7 +49,6 @@ const apiController = {
           }
         }
       })
-      // console.log(markerData)
       res.json(markerData)
     } catch (err) {
       console.log(err)

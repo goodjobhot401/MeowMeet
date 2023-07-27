@@ -156,6 +156,7 @@ if (searchButton) {
       } else {
         // 搜尋失敗的錯誤提示
         const errorMsg = '找不到該地標地理位置, 請更換搜尋字'
+        // postErrorMsg(errorMsg)
         getErrorAdress(errorMsg)
       }
     } catch (err) {
@@ -163,6 +164,17 @@ if (searchButton) {
     }
   })
 }
+
+// 前端錯誤提示
+async function postErrorMsg(errorMsg) {
+  try {
+    const response = await axios.post('/api/error', { errorMsg })
+    console.log(response.data)
+  } catch (error) {
+    console.log('Error:', error)
+  }
+}
+
 
 // search 頁搜尋結果欄
 function renderSearchResults(data) {
