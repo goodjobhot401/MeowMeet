@@ -43,6 +43,7 @@ const meowController = {
         location,
         avatar: filePath || null
       })
+      req.flash('success_messages', '成功新增街貓檔案')
       return res.redirect('/search')
     } catch (err) {
       console.log(err)

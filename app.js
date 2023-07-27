@@ -11,7 +11,7 @@ const handlebarsHelper = require('./helpers/handlebar-helpers')
 const routes = require('./routes')
 const googleApi = require('./googleApi')
 const app = express()
-// const flash = require('connect-flash')
+const flash = require('connect-flash')
 const port = process.env.PORT || 3000
 
 app.use(express.static('public'))
@@ -28,12 +28,11 @@ app.use(passport.session())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(methodOverride('_method'))
-
-// app.use(flash())
+app.use(flash())
 app.use((req, res, next) => {
-  // res.locals.success_messages = req.flash('success_messages')
-  // res.locals.error_messages = req.flash('error_messages')
-  // res.locals.warning_messages = req.flash('warning_messages')
+  res.locals.success_messages = req.flash('success_messages')
+  res.locals.error_messages = req.flash('error_messages')
+  res.locals.warning_messages = req.flash('warning_messages')
   res.locals.googleMapsApiKey = googleApi.googleMapsApiKey
   next()
 })
