@@ -22,7 +22,7 @@ module.exports = {
       },
       avatar: {
         type: Sequelize.STRING,
-        defaultValue: 'https://imgur.com/gallery/mchXhL0'
+        defaultValue: 'https://i.imgur.com/Ok2VQlX.png'
       },
       role: {
         type: Sequelize.BOOLEAN,

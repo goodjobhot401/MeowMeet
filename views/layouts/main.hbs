@@ -49,9 +49,12 @@
         {{{body}}}
       </div>
       {{!-- 右側欄位 --}}
+      {{#if admin}}
+      {{else}}
       <div class="col-2 p-0 flex-column" style="flex: 0 0 auto;">
         {{> missings}}
       </div>
+      {{/if}}
     </div>
   </main>
 

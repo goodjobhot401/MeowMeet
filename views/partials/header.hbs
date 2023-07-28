@@ -14,6 +14,11 @@
       {{#if user}}
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+          {{#ifCond user.role true}}
+          <li class="nav-item">
+            <a href="/admin/meows"><button class="btn btn-outline-light my-sm-0 me-2 my-2">後台管理</button></a>
+          </li>
+          {{/ifCond}}
           <li class="nav-item">
             <a href="/users/{{user.id}}/edit"><button class="btn btn-outline-light my-sm-0 me-2 my-2">帳號設定</button></a>
           </li>
