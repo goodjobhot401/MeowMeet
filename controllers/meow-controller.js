@@ -1,6 +1,5 @@
-const { Meow } = require('../models')
+const { Meow, Reply } = require('../models')
 const { imgurFileHandler } = require('../helpers/file-helpers')
-const { getUser } = require('../_helpers')
 
 const meowController = {
   // 搜尋首頁
@@ -28,7 +27,6 @@ const meowController = {
     try {
       const { name, gender, neuter, friendly, color, age, intro, latitude, longitude, location } = req.body
       const loginUserId = req.user.id
-      console.log('這是後台看的 loginUserId:' + loginUserId)
       const { file } = req
       // 將取出的檔案交給 file-helpers.js 處理
       const filePath = await imgurFileHandler(file)
@@ -57,18 +55,43 @@ const meowController = {
   // 取得街貓檔案
   getMeow: async (req, res, next) => {
     try {
-      const id = req.params.id
-      const meow = await Meow.findByPk(id, {
+      const loginUser = req.user
+      const meowId = req.params.meowId
+      const meow = await Meow.findByPk(meowId, {
         raw: true,
         nest: true,
         attributes: ['id', 'name', 'avatar', 'gender', 'age', 'neuter', 'location', 'friendly', 'intro'],
-        where: { id: id }
+        where: { id: meowId }
       })
 
       console.log(meow)
-      res.render('meow', { meow })
+      res.render('meow', { loginUser, meow })
     } catch (error) {
       console.error(error)
+      next(err)
+    }
+  },
+
+  // 新增街貓檔案留言
+  postReply: async (req, res, next) => {
+    try {
+      const loginUserId = req.user.id
+      const meowId = req.params.meowId
+      const { comment } = req.body
+
+      if (!comment || comment.trim() === '') throw new Error('內容不可空白')
+      if (comment.length > 150) throw new Error('字數不可超過 150 字')
+
+      const reply = await Reply.create({
+        comment,
+        userId: loginUserId,
+        meowId: meowId
+      })
+
+      req.flash('success_messages', '回復成功')
+      res.redirect(`/meows/${meowId}`)
+    } catch (err) {
+      console.log(err)
       next(err)
     }
   }

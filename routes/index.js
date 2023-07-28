@@ -48,7 +48,10 @@ router.post('/signup', userController.signUp)
 router.get('/search', meowController.searchMeows)
 
 // 街貓檔案頁
-router.get('/meows/:id', meowController.getMeow)
+router.get('/meows/:meowId', meowController.getMeow)
+
+// 新增街貓檔案留言
+router.post('/meows/:meowId/replies', meowController.postReply)
 
 // 錯誤處理
 router.use('/api', apiErrorHandler)
