@@ -165,17 +165,6 @@ if (searchButton) {
   })
 }
 
-// 前端錯誤提示
-async function postErrorMsg(errorMsg) {
-  try {
-    const response = await axios.post('/api/error', { errorMsg })
-    console.log(response.data)
-  } catch (error) {
-    console.log('Error:', error)
-  }
-}
-
-
 // search 頁搜尋結果欄
 function renderSearchResults(data) {
   const container = document.getElementById('searchResultsContainer')
@@ -254,6 +243,7 @@ function getErrorAdress(errorMsg) {
         </div>`
 
   const modalHeader = document.getElementById('modal-header') || null
+
   if (modalHeader) {
     const errorDiv = document.createElement('div')
     errorDiv.innerHTML = errHtml

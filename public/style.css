@@ -152,6 +152,19 @@ textarea:focus {
   z-index: 2;
 }
 
+.signin-logo-img {
+  width: 200px;
+  height: 98px;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.signin-logo-img:hover {
+  transform: scale(1.3);
+  transform-origin: center;
+  z-index: 2;
+}
+
 .user-avatar {
   max-width: 150px;
   max-height: 150px;
@@ -756,6 +769,29 @@ button {
   color: #FFFFFF;
 }
 
+.btn-outline-light:hover {
+  background-color: #ffffff;
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 500;
+  color: #ff5290;
+}
+
+.signup-btn {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.signup-btn:hover {
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  color: #7272f9;
+}
 
 
 /* ------------------------------     modal */

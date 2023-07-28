@@ -1,4 +1,4 @@
-<div class="singnup-panel mt-3" style="width: 65%; margin: 0 auto;">
+<div class="singnup-panel mt-3" style="width: 50%; margin: 0 auto;">
 
   {{!-- Logo --}}
   <div class="brand-logo mb-2 d-flex justify-content-center">
@@ -12,7 +12,7 @@
       <label class="form-label text-14px-reg color-dark-80 mb-2" for="account"><i class="fa-solid fa-paw me-1"
           style="color: #ff5290;"></i>帳號</label>
       <input class="form-input text-16px-reg" id="account" type="text" name="account"
-        placeholder="請輸入您的帳號... 例如: welovecat9527.." value="{{ name }}" required>
+        placeholder="請輸入您的帳號... 例如: welovecat9527.." value="{{ account }}" required>
     </div>
 
     {{!-- 暱稱 --}}
@@ -48,8 +48,9 @@
     </div>
 
     {{!-- 註冊 --}}
-    <div class="d-flex justify-content-center mt-2 mb-2">
+    <div class="d-flex justify-content-center relative mt-2 mb-2">
       <button class="pill-default pill-main" id="sign-up-button" type="submit" style="margin-top: 8px;">註冊</button>
+      <a href="/signin" class="text-12px-reg-gray signup-btn">已有帳號?點我登入</a>
     </div>
   </form>
 

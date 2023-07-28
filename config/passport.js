@@ -7,16 +7,16 @@ const { User } = require('../models')
 passport.use('local', new LocalStragety(
   // 客製 user 欄位
   {
-    usernameField: 'email',
+    usernameField: 'account',
     passwordField: 'password',
     passReqToCallback: true
   },
 
   // 驗證 user
-  (req, email, password, cb) => {
-    User.findOne({ where: { email } })
+  (req, account, password, cb) => {
+    User.findOne({ where: { account } })
       .then(user => {
-        if (!user) return cb(null, false, req.flash('error_messages', '信箱不存在！'))
+        if (!user) return cb(null, false, req.flash('error_messages', '帳號不存在！'))
         return bycrpt.compare(password, user.password)
           .then(isMatch => {
             if (!isMatch) {

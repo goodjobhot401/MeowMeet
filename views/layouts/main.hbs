@@ -74,18 +74,24 @@
       <div class="col-1 border">12</div> --}}
 
       {{!-- 左側欄位 --}}
+      {{#if notUser}}
+      {{else}}
       <div class="col-2 p-0 flex-column relative bg-secondary bg-opacity-10" style="flex: 0 0 auto;">
         {{> profile}}
       </div>
+      {{/if}}
       {{!-- 中間欄位 --}}
       <div class="col-8 p-0" id="main-body" style="flex: 1 0 auto;">
         {{> messages}}
         {{{body}}}
       </div>
       {{!-- 右側欄位 --}}
+      {{#if notUser}}
+      {{else}}
       <div class="col-2 p-0 flex-column" style="flex: 0 0 auto;">
         {{> missings}}
       </div>
+      {{/if}}
     </div>
   </main>
 

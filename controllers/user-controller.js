@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const userController = {
   signInPage: (req, res, next) => {
     try {
-      res.render('signin')
+      res.render('signin', { notUser: true })
     } catch (err) {
       console.log(err)
       next(err)
@@ -13,7 +13,7 @@ const userController = {
 
   signUpPage: (req, res, next) => {
     try {
-      res.render('signup')
+      res.render('signup', { notUser: true })
     } catch (err) {
       console.log(err)
       next(err)
@@ -82,12 +82,23 @@ const userController = {
         password: hash
       })
 
-      req.flash('success_messages', '成功註冊帳號。')
+      req.flash('success_messages', '已成功註冊帳號')
       res.redirect('/signin')
     } catch (err) {
       console.log(err)
       next(err)
     }
+  },
+
+  signIn: (req, res, next) => {
+    req.flash('success_messages', '已成功登入')
+    res.redirect('/search')
+  },
+
+  logout: (req, res, next) => {
+    req.logout()
+    req.flash('success_messages', '已成功登出')
+    res.redirect('/search')
   }
 }
 
