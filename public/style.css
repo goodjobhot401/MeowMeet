@@ -210,6 +210,23 @@ textarea:focus {
   object-fit: cover;
 }
 
+.overflow-360 {
+  overflow-y: auto;
+}
+
+.overflow-360::-webkit-scrollbar {
+  width: 10px;
+}
+
+.overflow-360::-webkit-scrollbar-thumb {
+  background-color: #ff73a2;
+  border-radius: 5px;
+}
+
+.overflow-360::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
 .search-card {
   transition: transform 0.3s ease;
 }

@@ -176,7 +176,7 @@ function renderSearchResults(data) {
   data.forEach(meow => {
     const card = document.createElement('a')
     card.href = `/meows/${meow.id}`
-    card.className = 'card search-card mb-3'
+    card.className = 'card search-card mb-3 overflow-360'
     card.style = 'width: 200px; height:360px; position: relative;'
 
     const image = document.createElement('img')

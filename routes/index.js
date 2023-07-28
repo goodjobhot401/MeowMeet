@@ -24,7 +24,7 @@ router.get('/admin/meows', adminController.getMeows)
 router.get('/admin/users', adminController.getUsers)
 
 // 上傳街貓頁
-router.get('/users/meows/create', meowController.creatMeow)
+router.get('/users/meows/create', meowController.createMeow)
 
 // 上傳街貓
 router.post('/users/meows', upload.single('avatar'), meowController.postMeow)

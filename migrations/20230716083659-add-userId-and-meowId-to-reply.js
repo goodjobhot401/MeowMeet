@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.addColumn('Replies', 'userId', {
+    await queryInterface.addColumn('Replies', 'user_id', {
       type: Sequelize.INTEGER,
       allowNull: false,
       references: {
@@ -11,7 +11,7 @@ module.exports = {
       }
     })
 
-    await queryInterface.addColumn('Replies', 'meowId', {
+    await queryInterface.addColumn('Replies', 'meow_id', {
       type: Sequelize.INTEGER,
       allowNull: false,
       references: {
@@ -24,8 +24,8 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.removeColumn('Replies', 'userId')
-    await queryInterface.removeColumn('Replies', 'meowId')
+    await queryInterface.removeColumn('Replies', 'user_id')
+    await queryInterface.removeColumn('Replies', 'meow_id')
 
     return Promise.resolve()
   }
