@@ -53,6 +53,9 @@ router.get('/meows/:meowId', meowController.getMeow)
 // 新增街貓檔案留言
 router.post('/meows/:meowId/replies', meowController.postReply)
 
+// 新增街貓檔案讚
+router.post('/meows/:meowId/like', meowController.postLike)
+
 // 錯誤處理
 router.use('/api', apiErrorHandler)
 router.use('/', generalErrorHandler)

@@ -1,4 +1,4 @@
-const { Meow, Reply } = require('../models')
+const { Meow, Reply, Like } = require('../models')
 const { imgurFileHandler } = require('../helpers/file-helpers')
 
 const meowController = {
@@ -57,17 +57,30 @@ const meowController = {
     try {
       const loginUser = req.user
       const meowId = req.params.meowId
-      const meow = await Meow.findByPk(meowId, {
-        raw: true,
-        nest: true,
-        attributes: ['id', 'name', 'avatar', 'gender', 'age', 'neuter', 'location', 'friendly', 'intro'],
-        where: { id: meowId }
-      })
 
-      console.log(meow)
-      res.render('meow', { loginUser, meow })
-    } catch (error) {
-      console.error(error)
+      const [meow, like] = await Promise.all([
+        Meow.findByPk(meowId, {
+          raw: true,
+          nest: true,
+          where: { id: meowId }
+        }),
+        Like.findOne({
+          where: {
+            userId: loginUser.id,
+            meowId
+          }
+        })
+      ])
+
+      const meowData = {
+        ...meow,
+        isLiked: like ? true : false
+      }
+
+      console.log(meowData)
+      res.render('meow', { loginUser, meow: meowData })
+    } catch (err) {
+      console.log(err)
       next(err)
     }
   },
@@ -85,11 +98,41 @@ const meowController = {
       const reply = await Reply.create({
         comment,
         userId: loginUserId,
-        meowId: meowId
+        meowId
       })
 
       req.flash('success_messages', '回復成功')
       res.redirect(`/meows/${meowId}`)
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
+  },
+
+  // 新增街貓檔案給讚
+  postLike: async (req, res, next) => {
+    try {
+      const loginUser = req.user.id
+      const meowId = req.params.meowId
+      const [meow, like] = await Promise.all([
+        Meow.findByPk(meowId),
+        Like.findOne({
+          where: {
+            userId: loginUser,
+            meowId
+          }
+        })
+      ])
+
+      if (!meow) throw new Error('街貓不存在')
+      if (like) throw new Error('您已按讚！')
+
+      await Like.create({
+        userId: loginUser,
+        meowId
+      })
+
+      res.redirect('back')
     } catch (err) {
       console.log(err)
       next(err)
