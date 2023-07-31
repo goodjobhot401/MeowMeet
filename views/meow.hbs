@@ -30,14 +30,14 @@
             <img src="https://i.imgur.com/qEuvC6d.png" class="meow-like-img" alt="">
           </button>
         </form>
-        <span class="d-inline">{{likeCount}} Liked</span>
+        <span class="d-inline">{{meow.likeCount}} Liked</span>
         {{else}}
         <form action="/meows/{{meow.id}}/like" class="d-inline-block" method="POST">
           <button type="submit">
             <img src="https://i.imgur.com/9ZW0y2Y.png" class="meow-like-img" alt="">
           </button>
         </form>
-        <span class="d-inline">{{likeCount}} Like</span>
+        <span class="d-inline">{{meow.likeCount}} Like</span>
         {{/if}}
       </div>
       {{else}}
@@ -47,7 +47,7 @@
             <img src="https://i.imgur.com/qEuvC6d.png" class="meow-like-img" alt="">
           </button>
         </div>
-        <span class="d-inline">{{likeCount}} Like</span>
+        <span class="d-inline">{{meow.likeCount}} Like</span>
       </div>
       {{/if}}
 

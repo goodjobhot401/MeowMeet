@@ -58,26 +58,35 @@ const meowController = {
       const loginUser = req.user
       const meowId = req.params.meowId
 
-      const [meow, like] = await Promise.all([
+      const [meow, likeCount] = await Promise.all([
         Meow.findByPk(meowId, {
           raw: true,
           nest: true,
           where: { id: meowId }
         }),
-        Like.findOne({
+        Like.count({
+          where: { meowId }
+        })
+      ])
+
+      let isLike = false
+
+      if (loginUser) {
+        const like = await Like.findOne({
           where: {
             userId: loginUser.id,
             meowId
           }
         })
-      ])
+        isLike = like ? true : false
+      }
 
       const meowData = {
         ...meow,
-        isLiked: like ? true : false
+        isLike,
+        likeCount
       }
 
-      console.log(meowData)
       res.render('meow', { loginUser, meow: meowData })
     } catch (err) {
       console.log(err)
