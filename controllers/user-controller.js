@@ -23,32 +23,28 @@ const userController = {
   signUp: async (req, res, next) => {
     try {
       const { account, name, email, password, checkPassword } = req.body
-      let errors = {}
 
       if (!account || !name || !email || !password || !checkPassword) {
         req.flash('error_messages', '所有欄位都是必填的')
         return res.render('signup', {
-          errors,
           account,
           name,
           email,
           password,
-          checkPassword
+          checkPassword,
+          notUser: true
         })
       }
 
       if (password !== checkPassword) {
-        errors.checkPassword = '密碼與確認密碼不相同'
-      }
-
-      if (Object.keys(errors).length) {
+        req.flash('error_messages', '密碼與確認密碼不相同')
         return res.render('signup', {
-          errors,
           account,
           name,
           email,
           password,
-          checkPassword
+          checkPassword,
+          notUser: true
         })
       }
 
@@ -58,19 +54,25 @@ const userController = {
       ])
 
       if (sameEmail) {
-        errors.email = 'email 已重複註冊！'
-      }
-      if (sameAccount) {
-        errors.account = 'account 已重複註冊！'
-      }
-      if (Object.keys(errors).length) {
+        req.flash('error_messages', 'email 已重複註冊！')
         return res.render('signup', {
-          errors,
           account,
           name,
           email,
           password,
-          checkPassword
+          checkPassword,
+          notUser: true
+        })
+      }
+      if (sameAccount) {
+        req.flash('error_messages', 'account 已重複註冊！')
+        return res.render('signup', {
+          account,
+          name,
+          email,
+          password,
+          checkPassword,
+          notUser: true
         })
       }
 

@@ -69,7 +69,7 @@ const meowController = {
         })
       ])
 
-      let isLike = false
+      let isLiked = false
 
       if (loginUser) {
         const like = await Like.findOne({
@@ -78,12 +78,12 @@ const meowController = {
             meowId
           }
         })
-        isLike = like ? true : false
+        isLiked = like ? true : false
       }
 
       const meowData = {
         ...meow,
-        isLike,
+        isLiked,
         likeCount
       }
 
