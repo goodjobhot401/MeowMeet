@@ -2,6 +2,7 @@ const { User } = require('../models')
 const bcrypt = require('bcryptjs')
 
 const userController = {
+  // 登入頁
   signInPage: (req, res, next) => {
     try {
       res.render('signin', { notUser: true })
@@ -11,6 +12,7 @@ const userController = {
     }
   },
 
+  // 註冊頁
   signUpPage: (req, res, next) => {
     try {
       res.render('signup', { notUser: true })
@@ -20,6 +22,13 @@ const userController = {
     }
   },
 
+  // 送出登入請求
+  signIn: (req, res, next) => {
+    req.flash('success_messages', '已成功登入')
+    res.redirect('/search')
+  },
+
+  // 送出註冊請求
   signUp: async (req, res, next) => {
     try {
       const { account, name, email, password, checkPassword } = req.body
@@ -92,11 +101,7 @@ const userController = {
     }
   },
 
-  signIn: (req, res, next) => {
-    req.flash('success_messages', '已成功登入')
-    res.redirect('/search')
-  },
-
+  // 送出登出請求
   logout: (req, res, next) => {
     req.logout()
     req.flash('success_messages', '已成功登出')
