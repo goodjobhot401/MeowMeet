@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Meow.belongsTo(models.User, { foreignKey: 'userId' })
+      Meow.hasMany(models.Reply, { foreignKey: 'userId' })
+      Meow.hasMany(models.Like, { foreignKey: 'userId' })
     }
   };
   Meow.init({

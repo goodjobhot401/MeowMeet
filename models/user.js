@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       User.hasMany(models.Meow, { foreignKey: 'userId' })
+      User.hasMany(models.Missing, { foreignKey: 'userId' })
       User.hasMany(models.Reply, { foreignKey: 'userId' })
+      User.hasMany(models.Like, { foreignKey: 'userId' })
     }
   };
   User.init({
