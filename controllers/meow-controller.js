@@ -165,6 +165,31 @@ const meowController = {
       console.log(err)
       next(err)
     }
+  },
+
+  // 收回接貓檔案的讚
+  postUnlike: async (req, res, next) => {
+    try {
+      const loginUser = req.user.id
+      const meowId = req.params.meowId
+
+      const like = await Like.findOne({
+        where: {
+          userId: loginUser,
+          meowId
+        }
+      })
+
+      if (!like) {
+        throw new Error('您尚未按讚！')
+      } else {
+        like.destroy()
+        res.redirect(`/meows/${meowId}`)
+      }
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
   }
 
 }
