@@ -59,7 +59,7 @@ const meowController = {
       const meowId = req.params.meowId
 
       // 先依照 meowId 查詢個別資料 + 獲得的 like 與 reply
-      // reply 已最新的時間排序
+      // reply 與 meowImage 以最新的時間排序
       const meow = await Meow.findOne({
         where: { id: meowId },
         include: [
@@ -74,9 +74,18 @@ const meowController = {
             include: [{ model: User, attributes: ['name', 'account', 'avatar'], raw: true, nest: true }],
             as: 'Replies',
             nest: true
+          },
+          {
+            model: meowImage,
+            include: [{ model: User, attributes: ['name', 'account'], raw: true, nest: true }],
+            as: 'meowImages',
+            nest: true
           }
         ],
-        order: [[{ model: Reply }, 'createdAt', 'DESC']]
+        order: [
+          [{ model: Reply }, 'createdAt', 'DESC'],
+          [{ model: meowImage }, 'createdAt', 'DESC']
+        ]
       })
 
       // 如果使用者有登入, 查詢是否對此 meowId 的貓按過讚
@@ -98,6 +107,7 @@ const meowController = {
         ...meow.toJSON(),
         isLiked,
         likeCount: meowCount.Likes.length,
+        imageCount: meowCount.meowImages.length + 1,
         replyCount: meowCount.Replies.length
       }
 
@@ -106,7 +116,12 @@ const meowController = {
         ...meow.toJSON().Replies
       ]
 
-      res.render('meow', { loginUser, meow: meowData, reply })
+      // 組裝 image
+      const image = [
+        ...meow.toJSON().meowImages
+      ]
+
+      res.render('meow', { loginUser, meow: meowData, reply, image })
     } catch (err) {
       console.log(err)
       next(err)
