@@ -1,4 +1,4 @@
-const { Meow, Reply, Like } = require('../models')
+const { Meow, User, Reply, Like } = require('../models')
 const { imgurFileHandler } = require('../helpers/file-helpers')
 
 const meowController = {
@@ -58,19 +58,30 @@ const meowController = {
       const loginUser = req.user
       const meowId = req.params.meowId
 
-      const [meow, likeCount] = await Promise.all([
-        Meow.findByPk(meowId, {
-          raw: true,
-          nest: true,
-          where: { id: meowId }
-        }),
-        Like.count({
-          where: { meowId }
-        })
-      ])
+      // 先依照 meowId 查詢個別資料 + 獲得的 like 與 reply
+      // reply 已最新的時間排序
+      const meow = await Meow.findOne({
+        where: { id: meowId },
+        include: [
+          {
+            model: Like,
+            as: 'Likes',
+            raw: true,
+            nest: true
+          },
+          {
+            model: Reply,
+            include: [{ model: User, attributes: ['name', 'account', 'avatar'], raw: true, nest: true }],
+            as: 'Replies',
+            nest: true
+          }
+        ],
+        order: [[{ model: Reply }, 'createdAt', 'DESC']]
+      })
 
+      // 如果使用者有登入, 查詢是否對此 meowId 的貓按過讚
+      // 並依結果改變 isLiked 狀態
       let isLiked = false
-
       if (loginUser) {
         const like = await Like.findOne({
           where: {
@@ -78,16 +89,24 @@ const meowController = {
             meowId
           }
         })
-        isLiked = like ? true : false
+        isLiked = !!like
       }
 
+      // 組裝 meowData
+      const meowCount = meow.toJSON()
       const meowData = {
-        ...meow,
+        ...meow.toJSON(),
         isLiked,
-        likeCount
+        likeCount: meowCount.Likes.length,
+        replyCount: meowCount.Replies.length
       }
 
-      res.render('meow', { loginUser, meow: meowData })
+      // 組裝 reply
+      const reply = [
+        ...meow.toJSON().Replies
+      ]
+
+      res.render('meow', { loginUser, meow: meowData, reply })
     } catch (err) {
       console.log(err)
       next(err)
@@ -110,7 +129,7 @@ const meowController = {
         meowId
       })
 
-      req.flash('success_messages', '回復成功')
+      req.flash('success_messages', '留言成功')
       res.redirect(`/meows/${meowId}`)
     } catch (err) {
       console.log(err)
@@ -141,7 +160,7 @@ const meowController = {
         meowId
       })
 
-      res.redirect('back')
+      res.redirect(`/meows/${meowId}`)
     } catch (err) {
       console.log(err)
       next(err)
