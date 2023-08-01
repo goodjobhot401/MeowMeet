@@ -10,7 +10,6 @@ const userController = require('../controllers/user-controller')
 const meowController = require('../controllers/meow-controller')
 const adminController = require('../controllers/admin-controller')
 
-
 // 使用 google map api 金鑰
 router.get('/api/googleApi', apiController.getGoogleApi)
 
@@ -58,6 +57,9 @@ router.post('/meows/:meowId/like', meowController.postLike)
 
 // 收回街貓檔案讚
 router.post('/meows/:meowId/unlike', meowController.postUnlike)
+
+// 上傳街貓照片
+router.post('/meows/:meowId/image', upload.single('meowImage'), meowController.postMeowImage)
 
 // 錯誤處理
 router.use('/api', apiErrorHandler)

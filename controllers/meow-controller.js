@@ -1,4 +1,4 @@
-const { Meow, User, Reply, Like } = require('../models')
+const { Meow, User, Reply, Like, meowImage } = require('../models')
 const { imgurFileHandler } = require('../helpers/file-helpers')
 
 const meowController = {
@@ -186,6 +186,29 @@ const meowController = {
         like.destroy()
         res.redirect(`/meows/${meowId}`)
       }
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
+  },
+
+  // 新增街貓照
+  postMeowImage: async (req, res, next) => {
+    try {
+      const loginUserId = req.user.id
+      const meowId = req.params.meowId
+
+      const { file } = req
+      const filePath = await imgurFileHandler(file)
+      console.log('完成上傳圖片的網誌在這：' + filePath)
+
+      const newMeow = await meowImage.create({
+        userId: loginUserId,
+        meowId,
+        image: filePath
+      })
+      req.flash('success_messages', '成功上傳照片')
+      return res.redirect(`/meows/${meowId}`)
     } catch (err) {
       console.log(err)
       next(err)

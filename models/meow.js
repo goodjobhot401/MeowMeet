@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       Meow.belongsTo(models.User, { foreignKey: 'userId' })
       Meow.hasMany(models.Reply, { foreignKey: 'meowId' })
       Meow.hasMany(models.Like, { foreignKey: 'meowId' })
+      Meow.hasMany(models.meowImage, { foreignKey: 'meowId' })
     }
   };
   Meow.init({

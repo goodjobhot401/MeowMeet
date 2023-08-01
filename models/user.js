@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Missing, { foreignKey: 'userId' })
       User.hasMany(models.Reply, { foreignKey: 'userId' })
       User.hasMany(models.Like, { foreignKey: 'userId' })
+      User.hasMany(models.meowImage, { foreignKey: 'userId' })
     }
   };
   User.init({

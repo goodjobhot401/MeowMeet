@@ -1,0 +1,37 @@
+{{!-- carousel 上傳街貓照片用 modal --}}
+<div class="modal fade" id="carouselUploadModal" aria-hidden="true" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header" id="modal-header">
+
+        {{!-- 關閉 Modal 按鈕 --}}
+        <div class="d-flex align-items-center">
+          <button type="button" data-bs-dismiss="modal" aria-label="Close" class="d-inline">
+            <img class="ms-2 me-3 svg-fill-main" src="/_base/Property 2=outlined, Property 3=close.svg">
+          </button>
+          <span class="text-16px-reg-light">上傳街貓相片</span>
+        </div>
+      </div>
+
+      {{!-- 上傳表單 --}}
+      <div class="upload-form mt-2 ms-3">
+        <form action="/meows/{{meow.id}}/image" method="POST" enctype="multipart/form-data">
+          <div class="col-auto me-2 mb-3">
+            <label class="form-label text-14px-reg color-dark-80" for="meowImage"><i class="fa-solid fa-paw me-1"
+                style="color: #ff5290;"></i>上傳</label>
+            <input class="form-input btn btn-outline-main" type="file" name="meowImage" id="meowImage" required>
+          </div>
+
+          {{!-- 確定按鈕 --}}
+          <div class="d-flex mb-2 justify-content-center">
+            <button type="submit" class="d-inline pill-small pill-main">
+              上傳
+            </button>
+          </div>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+</div>

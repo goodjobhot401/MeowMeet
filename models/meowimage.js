@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   meowImage.init({
+    image: DataTypes.STRING,
     user_id: DataTypes.INTEGER,
     meow_id: DataTypes.INTEGER
   }, {
