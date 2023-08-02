@@ -228,6 +228,16 @@ const meowController = {
       console.log(err)
       next(err)
     }
+  },
+
+  // 我的街貓頁
+  getMyMeows: async (req, res, next) => {
+    try {
+      res.render('meows', { closeRightColumn: true })
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
   }
 
 }

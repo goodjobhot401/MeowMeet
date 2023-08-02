@@ -5,7 +5,7 @@ const userController = {
   // 登入頁
   signInPage: (req, res, next) => {
     try {
-      res.render('signin', { notUser: true })
+      res.render('signin', { closeColumn: true })
     } catch (err) {
       console.log(err)
       next(err)
@@ -15,7 +15,7 @@ const userController = {
   // 註冊頁
   signUpPage: (req, res, next) => {
     try {
-      res.render('signup', { notUser: true })
+      res.render('signup', { closeColumn: true })
     } catch (err) {
       console.log(err)
       next(err)

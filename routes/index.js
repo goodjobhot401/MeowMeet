@@ -61,6 +61,9 @@ router.post('/meows/:meowId/unlike', meowController.postUnlike)
 // 上傳街貓照片
 router.post('/meows/:meowId/image', upload.single('meowImage'), meowController.postMeowImage)
 
+// 我的街貓頁
+router.get('/users/:id/meows', meowController.getMyMeows)
+
 // 錯誤處理
 router.use('/api', apiErrorHandler)
 router.use('/', generalErrorHandler)
