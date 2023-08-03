@@ -251,3 +251,28 @@ function getErrorAdress(errorMsg) {
     mainBody.insertAdjacentHTML('afterbegin', errHtml)
   }
 }
+
+// 我的街貓頁監聽 delete 按紐
+const deleteImageModal = document.getElementById('deleteImageModal') || null
+const deleteImageButton = document.querySelectorAll('.deleteImageButton') || null
+
+if (deleteImageButton) {
+  deleteImageButton.forEach(button => {
+    button.addEventListener('click', async () => {
+      const imageId = button.value
+      // console.log('imageId是:' + imageId)
+
+      const modalImageName = deleteImageModal.querySelector('#modalImageName')
+      const modalImage = deleteImageModal.querySelector('#modalImage')
+      const modalImageForm = deleteImageModal.querySelector('#modalImageForm')
+
+      const image = await axios.get(`/api/meowImages/${imageId}`)
+      const result = JSON.parse(JSON.stringify(image.data))
+      // console.log('這是 result:' + JSON.stringify(result))
+
+      modalImageName.textContent = `確定刪除 ${result.Meow.name} 的照片?`
+      modalImage.src = result.image
+      modalImageForm.action = `/meows/${result.id}/image?_method=DELETE`
+    })
+  })
+}

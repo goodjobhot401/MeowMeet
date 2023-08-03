@@ -979,6 +979,20 @@ button {
   top: 100px;
 }
 
+.modalImage {
+  max-width: 498px;
+  max-height: 498px;
+  object-fit: cover;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.modalImage:hover {
+  transform: scale(1.1);
+  transform-origin: center;
+}
+
+
 /* ------------------------------     刪除頁面上的滑動bar */
 html {
   overflow: -moz-hidden-unscrollable;

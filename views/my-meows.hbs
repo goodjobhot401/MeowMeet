@@ -1,5 +1,5 @@
 <div class="my-meows mt-5 ms-5 mb-5" style="width: 90%;">
-  {{> messages}}
+  {{> delete-image-modal}}
   <div class="row">
 
     <div class="col-8">
@@ -28,9 +28,8 @@
                   <a href="/meows/{{this.id}}/edit" class="btn-pill-main p-1" style="border-radius: 5px;">
                     Edit
                   </a>
-                  <form action="" method="POST">
-                    <button type="submit" class="btn-pill-main p-1 ms-1" style="border-radius: 5px;">Delete</button>
-                  </form>
+                  <button type="button" class="btn-pill-main p-1 ms-1" style="border-radius: 5px;"
+                    data-bs-toggle="modal" data-bs-target="#deleteMeowModal" value="{{this.id}}">Delete</button>
                 </div>
               </div>
             </div>
@@ -65,9 +64,8 @@
               {{!-- 右邊資料 --}}
               <div class="col-6 ps-2 meow-upload-simple-data">
                 <div class="meow-name"><span class="text-16px-reg-light">{{this.Meow.name}}</span></div>
-                <form action="/meows/{{this.Meow.id}}/image?_method=DELETE" method="POST" class="mt-1">
-                  <button type="submit" class="btn-pill-main p-1 ms-1" style="border-radius: 5px;">Delete</button>
-                </form>
+                <button type="button" class="btn-pill-main mt-1 p-1 ms-1 deleteImageButton" style="border-radius: 5px;"
+                  data-bs-toggle="modal" data-bs-target="#deleteImageModal" value="{{this.id}}">Delete</button>
               </div>
             </div>
           </div>

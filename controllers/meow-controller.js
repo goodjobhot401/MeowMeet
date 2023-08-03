@@ -236,11 +236,35 @@ const meowController = {
     }
   },
 
+  // 刪除街貓照
+  deleteMeowImage: async (req, res, next) => {
+    try {
+      const loginUserId = req.user.id
+      const imageId = req.params.imageId
+
+      const deleteImage = await meowImage.findOne({
+        where: { id: imageId, userId: loginUserId }
+      })
+
+      if (deleteImage) {
+        await deleteImage.destroy()
+        req.flash('success_messages', '照片刪除成功')
+      } else {
+        req.flash('error_messages', '找不到要刪除的照片')
+      }
+
+      res.redirect(`/users/${loginUserId}/meows`)
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
+  },
+
   // 我的街貓頁
   getMyMeows: async (req, res, next) => {
     try {
       const loginUserId = req.user.id
-
+      console.log('loginUserId 的號碼是:' + loginUserId)
       const user = await User.findByPk(loginUserId, {
         include: [
           {
@@ -249,7 +273,7 @@ const meowController = {
           },
           {
             model: meowImage,
-            attributes: ['image'],
+            attributes: ['id', 'image'],
             include: [{ model: Meow, attributes: ['id', 'name'], raw: true, nest: true }]
           }
         ],
@@ -262,6 +286,7 @@ const meowController = {
 
       const meowData = user.toJSON().Meows
       const meowImageData = user.toJSON().meowImages
+      console.log(meowImageData)
 
       res.render('my-meows', { closeRightColumn: true, meow: meowData, image: meowImageData })
     } catch (err) {
@@ -296,7 +321,6 @@ const meowController = {
       const { name, gender, neuter, friendly, color, age, intro, latitude, longitude, location } = req.body
 
       const { file } = req
-      // 將取出的檔案交給 file-helpers.js 處理
       const filePath = await imgurFileHandler(file)
 
       const meow = await Meow.findOne({
