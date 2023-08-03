@@ -156,7 +156,6 @@ if (searchButton) {
       } else {
         // 搜尋失敗的錯誤提示
         const errorMsg = '找不到該地標地理位置, 請更換搜尋字'
-        // postErrorMsg(errorMsg)
         getErrorAdress(errorMsg)
       }
     } catch (err) {
@@ -232,7 +231,6 @@ function renderSearchResults(data) {
     container.appendChild(card)
   })
 }
-
 
 // search & create 頁專用, 搜尋錯誤處理
 function getErrorAdress(errorMsg) {

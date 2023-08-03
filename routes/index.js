@@ -53,7 +53,7 @@ router.get('/meows/:meowId', meowController.getMeow)
 router.get('/meows/:meowId/edit', meowController.getMeowEdit)
 
 // 送出街貓檔案編輯
-// router.put('/meows/:meowId', meowController.putMeowEdit)
+router.put('/meows/:meowId/edit', upload.single('avatar'), meowController.putMeowEdit)
 
 // 新增街貓檔案留言
 router.post('/meows/:meowId/replies', meowController.postReply)
