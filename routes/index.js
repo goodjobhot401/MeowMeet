@@ -49,6 +49,12 @@ router.get('/search', meowController.searchMeows)
 // 街貓檔案頁
 router.get('/meows/:meowId', meowController.getMeow)
 
+// 街貓檔案編輯頁
+router.get('/meows/:meowId/edit', meowController.getMeowEdit)
+
+// 送出街貓檔案編輯
+// router.put('/meows/:meowId', meowController.putMeowEdit)
+
 // 新增街貓檔案留言
 router.post('/meows/:meowId/replies', meowController.postReply)
 
@@ -63,6 +69,8 @@ router.post('/meows/:meowId/image', upload.single('meowImage'), meowController.p
 
 // 我的街貓頁
 router.get('/users/:id/meows', meowController.getMyMeows)
+
+
 
 // 錯誤處理
 router.use('/api', apiErrorHandler)

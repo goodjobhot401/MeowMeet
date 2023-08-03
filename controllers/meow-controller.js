@@ -268,6 +268,23 @@ const meowController = {
       console.log(err)
       next(err)
     }
+  },
+
+  // 街貓檔案編輯頁
+  getMeowEdit: async (req, res, next) => {
+    try {
+      const meowId = req.params.meowId
+
+      const meowData = await Meow.findByPk(meowId, {
+        nest: true
+      })
+
+      console.log(meowData.toJSON())
+      res.render('meow-edit', { meow: meowData.toJSON() })
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
   }
 
 }

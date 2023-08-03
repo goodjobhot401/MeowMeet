@@ -5,9 +5,14 @@
     <a href="javascript:history.back()" class="pill-main pill-small">返回</a>
   </div>
 
-  <form class="form-control mb-4" action="/users/meows/{{meow.id}}" method="POST" enctype="multipart/form-data"
+  <form class="form-control mb-4" action="/meows/{{meow.id}}?_method=PUT" method="POST" enctype="multipart/form-data"
     style="position: relative; margin: 0 auto;">
     {{> meow-form}}
+
+    {{!-- 修改檔案 --}}
+    <div class="d-flex justify-content-center">
+      <button class="pill-default pill-main mt-3 mb-3" id="edit-button" type="submit">修改檔案</button>
+    </div>
   </form>
 
 </div>
