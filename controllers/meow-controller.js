@@ -64,6 +64,10 @@ const meowController = {
         where: { id: meowId },
         include: [
           {
+            model: User,
+            attributes: ['name', 'account', 'avatar']
+          },
+          {
             model: Like,
             as: 'Likes',
             raw: true,
@@ -87,6 +91,8 @@ const meowController = {
           [{ model: meowImage }, 'createdAt', 'DESC']
         ]
       })
+
+      // console.log(meow.toJSON())
 
       // 如果使用者有登入, 查詢是否對此 meowId 的貓按過讚
       // 並依結果改變 isLiked 狀態
@@ -215,7 +221,7 @@ const meowController = {
 
       const { file } = req
       const filePath = await imgurFileHandler(file)
-      console.log('完成上傳圖片的網誌在這：' + filePath)
+      console.log('完成上傳圖片的網址在這：' + filePath)
 
       const newMeow = await meowImage.create({
         userId: loginUserId,
@@ -233,7 +239,31 @@ const meowController = {
   // 我的街貓頁
   getMyMeows: async (req, res, next) => {
     try {
-      res.render('meows', { closeRightColumn: true })
+      const loginUserId = req.user.id
+
+      const user = await User.findByPk(loginUserId, {
+        include: [
+          {
+            model: Meow,
+            attributes: ['id', 'name', 'avatar']
+          },
+          {
+            model: meowImage,
+            attributes: ['image'],
+            include: [{ model: Meow, attributes: ['id', 'name'], raw: true, nest: true }]
+          }
+        ],
+        order: [
+          [{ model: Meow }, 'createdAt', 'DESC'],
+          [{ model: meowImage }, 'createdAt', 'DESC']
+        ],
+        nest: true
+      })
+
+      const meowData = user.toJSON().Meows
+      const meowImageData = user.toJSON().meowImages
+
+      res.render('my-meows', { closeRightColumn: true, meow: meowData, image: meowImageData })
     } catch (err) {
       console.log(err)
       next(err)

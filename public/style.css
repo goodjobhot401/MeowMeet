@@ -359,15 +359,6 @@ textarea:focus {
   box-shadow: #FC5A5A;
 }
 
-.meow-recieve-like,
-.meow-recieve-image {
-  width: 80%;
-  text-align: center;
-  border-radius: 6px;
-  background-color: #FFFFFF;
-  box-shadow: #FC5A5A;
-}
-
 .meow-card-frame {
   width: 50%;
   display: flex;
@@ -386,6 +377,15 @@ textarea:focus {
   border: 2px solid white;
   border-radius: 5px 0 0 5px;
   box-shadow: #130309;
+}
+
+.meow-upload-simple-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  background-color: rgb(245, 229, 211);
+  border-radius: 0 5px 5px 0;
 }
 
 .missing-meow-figure {

@@ -15,14 +15,14 @@
           {{#each meow}}
           {{!-- 左邊頭貼 --}}
           <div class="col-3 p-2">
-            <a href="/meows/{{this.id}}" class="meow-card d-flex" style="width:auto; height: 100px;">
-              <div class="col-5 meow-card-figure">
+            <div class="meow-card d-flex" style="height: 100px;">
+              <div class="col-4 meow-card-figure">
                 <figure class="meow-card-img">
                   <img src="{{this.avatar}}" class="meow-img" alt="">
                 </figure>
               </div>
               {{!-- 右邊資料 --}}
-              <div class="col-7 meow-simple-data">
+              <div class="col-8 meow-simple-data" style="width: fit-content;">
                 <div class="meow-name"><span class="text-16px-reg-light">{{this.name}}</span></div>
                 <div class="d-flex mt-1">
                   <a href="/meows/{{this.id}}/edit" class="btn-pill-main p-1" style="border-radius: 5px;">
@@ -33,7 +33,7 @@
                   </form>
                 </div>
               </div>
-            </a>
+            </div>
           </div>
           {{/each}}
 
@@ -59,13 +59,13 @@
           {{!-- 左邊頭貼 --}}
           <div class="col-3 p-2">
             <div class="meow-card d-flex" style="width:auto; height: 100px;">
-              <a href="{{this.image}}" target="_blank" class="col-5 meow-card-frame">
+              <a href="{{this.image}}" target="_blank" class="col-6 meow-card-frame">
                 <img src="{{this.image}}" class="meow-upload-img" alt="">
               </a>
               {{!-- 右邊資料 --}}
-              <div class="col-7 ps-2 meow-simple-data">
-                <div class="meow-name"><span class="text-16px-reg-light">{{this.name}}</span></div>
-                <form action="" method="POST" class="mt-1">
+              <div class="col-6 ps-2 meow-upload-simple-data">
+                <div class="meow-name"><span class="text-16px-reg-light">{{this.Meow.name}}</span></div>
+                <form action="/meows/{{this.Meow.id}}/image?_method=DELETE" method="POST" class="mt-1">
                   <button type="submit" class="btn-pill-main p-1 ms-1" style="border-radius: 5px;">Delete</button>
                 </form>
               </div>
