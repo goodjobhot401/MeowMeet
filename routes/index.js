@@ -58,6 +58,9 @@ router.get('/users/:id/setting', userController.getSettingPage)
 // 修改個人資料
 router.put('/users/:id/setting', userController.putSetting)
 
+// 更換個人頭貼
+router.put('/users/:id/avatar', upload.single('avatar'), userController.postAvatar)
+
 // 搜尋街貓頁
 router.get('/search', meowController.searchMeows)
 

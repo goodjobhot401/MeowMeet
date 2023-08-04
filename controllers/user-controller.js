@@ -1,6 +1,7 @@
 const { User } = require('../models')
 const { Op } = require('sequelize')
 const bcrypt = require('bcryptjs')
+const { imgurFileHandler } = require('../helpers/file-helpers')
 
 const userController = {
   // 登入頁
@@ -134,6 +135,34 @@ const userController = {
         res.redirect('back')
       } else {
         req.flash('error_messages', '找不到此帳號')
+        res.redirect('back')
+      }
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
+  },
+
+  // 更新頭貼請求
+  postAvatar: async (req, res, next) => {
+    try {
+      const loginUserId = req.params.id
+
+      const { file } = req
+      const filePath = await imgurFileHandler(file)
+
+      const user = await User.findOne({
+        where: { id: loginUserId }
+      })
+
+      if (user) {
+        await user.update({
+          avatar: filePath || user.avatar
+        })
+        req.flash('success_messages', '頭像更新成功')
+        res.redirect('back')
+      } else {
+        req.flash('error_messages', '找不到使用者')
         res.redirect('back')
       }
     } catch (err) {
