@@ -1,5 +1,6 @@
 const { Meow, User, Reply, Like, meowImage } = require('../models')
 const { imgurFileHandler } = require('../helpers/file-helpers')
+const db = require('../models/index')
 
 const meowController = {
   // 搜尋首頁
@@ -47,6 +48,43 @@ const meowController = {
       req.flash('success_messages', '成功新增街貓檔案')
       return res.redirect('/search')
     } catch (err) {
+      console.log(err)
+      next(err)
+    }
+  },
+
+  // 刪除街貓檔案
+  deleteMeow: async (req, res, next) => {
+    // const t = await db.sequelize.transaction({ timeout: 10000 })
+
+    try {
+      const loginUserId = req.user.id
+      const meowId = req.params.meowId
+
+      const meow = await Meow.findOne({
+        where: { id: meowId, userId: loginUserId }
+      })
+
+      if (!meow) {
+        req.flash('error_messages', '找不到要刪除的街貓檔案')
+        res.redirect(`/users/${loginUserId}/meows`)
+        return
+      }
+
+      await Reply.destroy({ where: { meowId } })
+      console.log('刪除完 reply 了')
+      await Like.destroy({ where: { meowId } })
+      console.log('刪除完 like 了')
+      await meowImage.destroy({ where: { meowId } })
+      console.log('刪除完 meowImage 了')
+      await meow.destroy()
+      console.log('刪除完 meow 了')
+
+      // t.commit()
+      req.flash('success_messages', '街貓檔案刪除成功')
+      res.redirect(`/users/${loginUserId}/meows`)
+    } catch (err) {
+      // await t.rollback()
       console.log(err)
       next(err)
     }
@@ -213,7 +251,7 @@ const meowController = {
     }
   },
 
-  // 新增街貓照
+  // 新增街貓照片
   postMeowImage: async (req, res, next) => {
     try {
       const loginUserId = req.user.id
@@ -236,7 +274,7 @@ const meowController = {
     }
   },
 
-  // 刪除街貓照
+  // 刪除街貓照片
   deleteMeowImage: async (req, res, next) => {
     try {
       const loginUserId = req.user.id
@@ -286,7 +324,7 @@ const meowController = {
 
       const meowData = user.toJSON().Meows
       const meowImageData = user.toJSON().meowImages
-      console.log(meowImageData)
+      console.log(meowData)
 
       res.render('my-meows', { closeRightColumn: true, meow: meowData, image: meowImageData })
     } catch (err) {

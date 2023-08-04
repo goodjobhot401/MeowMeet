@@ -1,5 +1,5 @@
 const { Meow, meowImage } = require('../models')
-const { Op, Model } = require('sequelize')
+const { Op } = require('sequelize')
 const googleApi = require('../googleApi')
 
 const apiController = {
@@ -35,6 +35,28 @@ const apiController = {
         }
       })
       res.json(markerData)
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
+  },
+
+  // 刪除街貓檔案確認 modal
+  getMeow: async (req, res, next) => {
+    try {
+      const meowId = req.params.meowId
+      // console.log('meowId 的號碼是:' + meowId)
+
+      const meow = await Meow.findOne({
+        where: { id: meowId },
+        include: [{ model: meowImage, raw: true, nest: true }],
+        attributes: ['id', 'name', 'avatar'],
+        raw: true,
+        nest: true
+      })
+
+      // console.log('meow 的檔案:' + JSON.stringify(meow))
+      return res.json(meow)
     } catch (err) {
       console.log(err)
       next(err)

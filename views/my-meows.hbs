@@ -1,4 +1,5 @@
 <div class="my-meows mt-5 ms-5 mb-5" style="width: 90%;">
+  {{> delete-meow-modal}}
   {{> delete-image-modal}}
   <div class="row">
 
@@ -18,17 +19,20 @@
             <div class="meow-card d-flex" style="height: 100px;">
               <div class="col-4 meow-card-figure">
                 <figure class="meow-card-img">
-                  <img src="{{this.avatar}}" class="meow-img" alt="">
+                  <a href="/meows/{{this.id}}">
+                    <img src="{{this.avatar}}" class="meow-img" alt="">
+                  </a>
                 </figure>
               </div>
               {{!-- 右邊資料 --}}
               <div class="col-8 meow-simple-data" style="width: fit-content;">
-                <div class="meow-name"><span class="text-16px-reg-light">{{this.name}}</span></div>
+                <div class="meow-name"><a href="/meows/{{this.id}}"><span
+                      class="text-16px-reg-light">{{this.name}}</span></a></div>
                 <div class="d-flex mt-1">
                   <a href="/meows/{{this.id}}/edit" class="btn-pill-main p-1" style="border-radius: 5px;">
                     Edit
                   </a>
-                  <button type="button" class="btn-pill-main p-1 ms-1" style="border-radius: 5px;"
+                  <button type="button" class="btn-pill-main p-1 ms-1 deleteMeowButton " style="border-radius: 5px;"
                     data-bs-toggle="modal" data-bs-target="#deleteMeowModal" value="{{this.id}}">Delete</button>
                 </div>
               </div>

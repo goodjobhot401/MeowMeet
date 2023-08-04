@@ -1,5 +1,5 @@
-{{!-- 刪除街貓照片用 modal --}}
-<div class="modal fade" id="deleteImageModal" aria-hidden="true" tabindex="-1">
+{{!-- 刪除街貓檔案用 modal --}}
+<div class="modal fade" id="deleteMeowModal" aria-hidden="true" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header" id="modal-header">
@@ -9,19 +9,19 @@
           <button type="button" data-bs-dismiss="modal" aria-label="Close" class="d-inline">
             <img class="ms-2 me-3 svg-fill-main" src="/_base/Property 2=outlined, Property 3=close.svg">
           </button>
-          <span class="text-16px-reg-light" id="modalImageName"></span>
+          <span class="text-16px-reg-light modalMeowName" id="modalMeowName"></span>
         </div>
       </div>
 
       {{!-- 圖片預覽 --}}
       <div class="image-form mt-2">
         <figure class="d-flex justify-content-center p-1">
-          <img id="modalImage" class="modalImage" src="" alt="">
+          <img id="modalMeowImage" class="modalMeowImage" src="" alt="">
         </figure>
 
         {{!-- 確定刪除 --}}
         <div class="d-flex justify-content-center  mt-2 mb-2">
-          <form action="" method="POST" class="p-1" id="modalImageForm">
+          <form action="" method="POST" class="modalMeowForm p-1" id="modalMeowForm">
             <button type="submit" class="d-inline pill-small pill-main">
               刪除
             </button>

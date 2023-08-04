@@ -16,6 +16,9 @@ router.get('/api/googleApi', apiController.getGoogleApi)
 // 接收 google map viewport 並回傳 viewport 範圍內的資料
 router.post('/api/markerData', apiController.postViewport)
 
+// 刪除街貓檔案確認 modal
+router.get('/api/meows/:meowId', apiController.getMeow)
+
 // 刪除街貓照片確認 modal
 router.get('/api/meowImages/:imageId', apiController.getMeowImage)
 
@@ -28,8 +31,11 @@ router.get('/admin/users', adminController.getUsers)
 // 上傳街貓頁
 router.get('/users/meows/create', meowController.createMeow)
 
-// 上傳街貓
+// 上傳街貓檔案
 router.post('/users/meows', upload.single('avatar'), meowController.postMeow)
+
+// 刪除街貓檔案
+router.delete('/meows/:meowId', meowController.deleteMeow)
 
 // 登入頁
 router.get('/signin', userController.signInPage)

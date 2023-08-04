@@ -975,8 +975,12 @@ button {
 /* ------------------------------     modal */
 
 .modal {
+  width: max-content;
   position: fixed;
+  left: 50%;
+  margin: 0 auto;
   top: 100px;
+  transform: translate(-50%);
 }
 
 .modalImage {
@@ -988,6 +992,19 @@ button {
 }
 
 .modalImage:hover {
+  transform: scale(1.1);
+  transform-origin: center;
+}
+
+.modalMeowImage {
+  max-width: 498px;
+  max-height: 498px;
+  object-fit: cover;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.modalMeowImage:hover {
   transform: scale(1.1);
   transform-origin: center;
 }
