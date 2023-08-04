@@ -52,6 +52,12 @@ router.get('/signup', userController.signUpPage)
 // 註冊
 router.post('/signup', userController.signUp)
 
+// 編輯個人資料頁
+router.get('/users/:id/setting', userController.getSettingPage)
+
+// 修改個人資料
+router.put('/users/:id/setting', userController.putSetting)
+
 // 搜尋街貓頁
 router.get('/search', meowController.searchMeows)
 
