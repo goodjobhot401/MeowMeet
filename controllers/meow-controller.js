@@ -55,8 +55,6 @@ const meowController = {
 
   // 刪除街貓檔案
   deleteMeow: async (req, res, next) => {
-    // const t = await db.sequelize.transaction({ timeout: 10000 })
-
     try {
       const loginUserId = req.user.id
       const meowId = req.params.meowId
@@ -80,11 +78,9 @@ const meowController = {
       await meow.destroy()
       console.log('刪除完 meow 了')
 
-      // t.commit()
       req.flash('success_messages', '街貓檔案刪除成功')
       res.redirect(`/users/${loginUserId}/meows`)
     } catch (err) {
-      // await t.rollback()
       console.log(err)
       next(err)
     }
@@ -302,7 +298,7 @@ const meowController = {
   getMyMeows: async (req, res, next) => {
     try {
       const loginUserId = req.user.id
-      console.log('loginUserId 的號碼是:' + loginUserId)
+
       const user = await User.findByPk(loginUserId, {
         include: [
           {
@@ -322,9 +318,10 @@ const meowController = {
         nest: true
       })
 
-      const meowData = user.toJSON().Meows
-      const meowImageData = user.toJSON().meowImages
-      console.log(meowData)
+      console.log(user.toJSON())
+      const userData = user.toJSON()
+      const meowData = userData.Meows || []
+      const meowImageData = userData.meowImages || []
 
       res.render('my-meows', { closeRightColumn: true, meow: meowData, image: meowImageData })
     } catch (err) {

@@ -11,7 +11,7 @@
     {{!-- 左邊頭貼 --}}
     <div class="col-3 p-2">
       <div class="meow-card d-flex" style="height: 100px;">
-        <div class="col-4 meow-card-figure">
+        <div class="col-5 meow-card-figure">
           <figure class="meow-card-img">
             <a href="/meows/{{this.id}}">
               <img src="{{this.avatar}}" class="meow-img" alt="">
@@ -19,7 +19,7 @@
           </figure>
         </div>
         {{!-- 右邊資料 --}}
-        <div class="col-8 meow-simple-data" style="width: fit-content;">
+        <div class="col-7 meow-simple-data pe-1" style="width: fit-content;">
           <div class="meow-name"><a href="/meows/{{this.id}}"><span class="text-16px-reg-light">{{this.name}}</span></a>
           </div>
           <div class="d-flex mt-1">
@@ -37,7 +37,7 @@
   </div>
   {{else}}
   <div class="card-body no-data d-flex flex-wrap" id="">
-    <a href="/meows/create"><span class="text-16px-med-gray bulid-one"><i class="fa-regular fa-square-plus"
+    <a href="/users/meows/create"><span class="text-16px-med-gray bulid-one"><i class="fa-regular fa-square-plus"
           style="color: #ff5290;"></i> Meow Meet</span></a>
   </div>
   {{/if}}
