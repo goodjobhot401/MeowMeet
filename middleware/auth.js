@@ -12,7 +12,7 @@ module.exports = {
   authenticatedAdmin: (req, res, next) => {
     // if (req.isAuthenticated)
     if (helpers.ensureAuthenticated(req)) {
-      if (helpers.getUser(req).role === 1) return next()
+      if (helpers.getUser(req).role === true) return next()
       req.flash('warning_messages', '管理員權限不足')
       res.redirect('/search')
     } else {

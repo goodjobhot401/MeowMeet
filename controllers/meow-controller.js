@@ -64,21 +64,21 @@ const meowController = {
 
       if (!meow) {
         req.flash('error_messages', '找不到要刪除的街貓檔案')
-        res.redirect(`/users/${loginUserId}/meows`)
+        res.redirect(`/meows/${loginUserId}/myMeows`)
         return
       }
 
-      await Reply.destroy({ where: { meowId } })
-      console.log('刪除完 reply 了')
-      await Like.destroy({ where: { meowId } })
-      console.log('刪除完 like 了')
-      await meowImage.destroy({ where: { meowId } })
-      console.log('刪除完 meowImage 了')
-      await meow.destroy()
-      console.log('刪除完 meow 了')
+      const promises = [
+        Reply.destroy({ where: { meowId } }),
+        Like.destroy({ where: { meowId } }),
+        meowImage.destroy({ where: { meowId } }),
+        meow.destroy()
+      ]
+
+      await Promise.all(promises)
 
       req.flash('success_messages', '街貓檔案刪除成功')
-      res.redirect(`/users/${loginUserId}/meows`)
+      res.redirect(`/meows/${loginUserId}/myMeows`)
     } catch (err) {
       console.log(err)
       next(err)
@@ -93,8 +93,7 @@ const meowController = {
 
       // 先依照 meowId 查詢個別資料 + 獲得的 like 與 reply
       // reply 與 meowImage 以最新的時間排序
-      const meow = await Meow.findOne({
-        where: { id: meowId },
+      const meow = await Meow.findByPk(meowId, {
         include: [
           {
             model: User,
@@ -102,30 +101,23 @@ const meowController = {
           },
           {
             model: Like,
-            as: 'Likes',
-            raw: true,
-            nest: true
+            attributes: ['id', 'userId', 'meowId']
           },
           {
             model: Reply,
-            include: [{ model: User, attributes: ['name', 'account', 'avatar'], raw: true, nest: true }],
-            as: 'Replies',
-            nest: true
+            include: [{ model: User, attributes: ['name', 'account', 'avatar'], raw: true, nest: true }]
           },
           {
             model: meowImage,
-            include: [{ model: User, attributes: ['name', 'account'], raw: true, nest: true }],
-            as: 'meowImages',
-            nest: true
+            include: [{ model: User, attributes: ['name', 'account'], raw: true, nest: true }]
           }
         ],
         order: [
           [{ model: Reply }, 'createdAt', 'DESC'],
           [{ model: meowImage }, 'createdAt', 'DESC']
-        ]
+        ],
+        nest: true
       })
-
-      // console.log(meow.toJSON())
 
       // 如果使用者有登入, 查詢是否對此 meowId 的貓按過讚
       // 並依結果改變 isLiked 狀態
@@ -135,7 +127,9 @@ const meowController = {
           where: {
             userId: loginUser.id,
             meowId
-          }
+          },
+          nest: true,
+          raw: true
         })
         isLiked = !!like
       }
@@ -256,7 +250,7 @@ const meowController = {
       const filePath = await imgurFileHandler(file)
       console.log('完成上傳圖片的網址在這：' + filePath)
 
-      const newMeow = await meowImage.create({
+      const newMeowImage = await meowImage.create({
         userId: loginUserId,
         meowId,
         image: filePath
@@ -286,7 +280,7 @@ const meowController = {
         req.flash('error_messages', '找不到要刪除的照片')
       }
 
-      res.redirect(`/users/${loginUserId}/meows`)
+      res.redirect(`/meows/${loginUserId}/myMeows`)
     } catch (err) {
       console.log(err)
       next(err)
@@ -379,7 +373,7 @@ const meowController = {
       }
 
       req.flash('success_messages', '成功編輯街貓檔案')
-      res.redirect(`/users/${loginUserId}/meows`)
+      res.redirect(`/meows/${loginUserId}/myMeows`)
     } catch (err) {
       console.log(err)
       next(err)
