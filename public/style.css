@@ -141,7 +141,7 @@ textarea:focus {
 
 .brand-logo-img {
   width: 150px;
-  height: 72px;
+  height: 65px;
   margin: 0 auto;
   transition: transform 0.3s ease;
 }
@@ -154,7 +154,7 @@ textarea:focus {
 
 .signin-logo-img {
   width: 200px;
-  height: 98px;
+  height: 88px;
   margin: 0 auto;
   transition: transform 0.3s ease;
 }

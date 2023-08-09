@@ -1,6 +1,5 @@
 const { Meow, User, Reply, Like, meowImage } = require('../models')
 const { imgurFileHandler } = require('../helpers/file-helpers')
-const db = require('../models/index')
 
 const meowController = {
   // 搜尋首頁
