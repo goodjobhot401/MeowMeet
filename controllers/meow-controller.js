@@ -1,4 +1,4 @@
-const { Meow, User, Reply, Like, meowImage } = require('../models')
+const { Meow, User, Reply, Like, meowImage, LikeOfReply } = require('../models')
 const { imgurFileHandler } = require('../helpers/file-helpers')
 
 const meowController = {
@@ -105,7 +105,10 @@ const meowController = {
           },
           {
             model: Reply,
-            include: [{ model: User, attributes: ['name', 'account', 'avatar'], raw: true, nest: true }]
+            include: [
+              { model: User, attributes: ['name', 'account', 'avatar'], raw: true, nest: true },
+              { model: LikeOfReply, raw: true, nest: true }
+            ]
           },
           {
             model: meowImage,
@@ -121,7 +124,7 @@ const meowController = {
 
       // 如果使用者有登入, 查詢是否對此 meowId 的貓按過讚
       // 並依結果改變 isLiked 狀態
-      let isLiked = false
+      let meowIsLiked = false
       if (loginUser) {
         const like = await Like.findOne({
           where: {
@@ -131,14 +134,14 @@ const meowController = {
           nest: true,
           raw: true
         })
-        isLiked = !!like
+        meowIsLiked = !!like
       }
 
       // 組裝 meowData
       const meowCount = meow.toJSON()
       const meowData = {
         ...meow.toJSON(),
-        isLiked,
+        isLiked: meowIsLiked,
         likeCount: meowCount.Likes.length,
         imageCount: meowCount.meowImages.length + 1,
         replyCount: meowCount.Replies.length
@@ -149,12 +152,21 @@ const meowController = {
         ...meow.toJSON().Replies
       ]
 
+      let replyIsLiked = reply
+
+      if (loginUser) {
+        replyIsLiked = reply.map(replyObj => {
+          const isLiked = replyObj.LikeOfReplies.some(likeOfReply => likeOfReply.user_id === loginUser.id)
+          return { ...replyObj, isLiked }
+        })
+      }
+
       // 組裝 image
       const image = [
         ...meow.toJSON().meowImages
       ]
 
-      res.render('meow', { loginUser, meow: meowData, reply, image })
+      res.render('meow', { loginUser, meow: meowData, reply: replyIsLiked, image })
     } catch (err) {
       console.log(err)
       next(err)
@@ -188,13 +200,13 @@ const meowController = {
   // 新增街貓檔案給讚
   postLike: async (req, res, next) => {
     try {
-      const loginUser = req.user.id
+      const loginUserId = req.user.id
       const meowId = req.params.meowId
       const [meow, like] = await Promise.all([
         Meow.findByPk(meowId),
         Like.findOne({
           where: {
-            userId: loginUser,
+            userId: loginUserId,
             meowId
           }
         })
@@ -204,7 +216,7 @@ const meowController = {
       if (like) throw new Error('您已按讚！')
 
       await Like.create({
-        userId: loginUser,
+        userId: loginUserId,
         meowId
       })
 
@@ -218,12 +230,12 @@ const meowController = {
   // 收回接貓檔案的讚
   postUnlike: async (req, res, next) => {
     try {
-      const loginUser = req.user.id
+      const loginUserId = req.user.id
       const meowId = req.params.meowId
 
       const like = await Like.findOne({
         where: {
-          userId: loginUser,
+          userId: loginUserId,
           meowId
         }
       })

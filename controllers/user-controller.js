@@ -1,4 +1,4 @@
-const { User } = require('../models')
+const { User, Reply, LikeOfReply } = require('../models')
 const { Op } = require('sequelize')
 const bcrypt = require('bcryptjs')
 const { imgurFileHandler } = require('../helpers/file-helpers')
@@ -165,6 +165,66 @@ const userController = {
         req.flash('error_messages', '找不到使用者')
         res.redirect('back')
       }
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
+  },
+
+  // 對留言按讚
+  postReplyLike: async (req, res, next) => {
+    try {
+      const { meowId } = req.body
+      const loginUserId = req.user.id
+      const replyId = req.params.replyId
+
+      const [likeOfReply, reply] = await Promise.all([
+        LikeOfReply.findOne({
+          where: {
+            userId: loginUserId,
+            replyId
+          }
+        }),
+        Reply.findByPk(replyId)
+      ])
+
+      if (!reply) throw new Error('留言不存在')
+      if (likeOfReply) throw new Error('您已按讚！')
+
+      await LikeOfReply.create({
+        userId: loginUserId,
+        replyId
+      })
+
+      res.redirect(`/meows/${meowId}`)
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
+  },
+
+  // 對留言收回讚
+  postReplyUnlike: async (req, res, next) => {
+    try {
+      const { meowId } = req.body
+      const loginUserId = req.user.id
+      const replyId = req.params.replyId
+
+      const [likeOfReply, reply] = await Promise.all([
+        LikeOfReply.findOne({
+          where: {
+            userId: loginUserId,
+            replyId
+          }
+        }),
+        Reply.findByPk(replyId)
+      ])
+
+      if (!reply) throw new Error('留言不存在')
+      if (!likeOfReply) throw new Error('您尚未按讚')
+
+      await likeOfReply.destroy()
+      res.redirect(`/meows/${meowId}`)
     } catch (err) {
       console.log(err)
       next(err)

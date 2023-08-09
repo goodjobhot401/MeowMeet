@@ -12,6 +12,9 @@
     <div class="reply-box-bottom">
       <div class="mt-3">
         {{#each reply}}
+
+        {{#if ../loginUser}}
+
         <div class="reply">
           <div class="user-avatar">
             <img src="{{this.User.avatar}}" alt="User Avatar">
@@ -23,13 +26,15 @@
             </div>
             <div class="reply-data-row">
               {{#if this.isLiked}}
-              <form action="/replies/{{this.id}}/unlike" method="POST">
-                <button type="submit" style="text-12px-reg-light">
+              <form action="/users/replies/{{this.id}}/unlike" method="POST">
+                <input type="text" class="d-none" name="meowId" value="{{this.meowId}}">
+                <button type="submit" class="text-12px-reg-light">
                   讚
                 </button>
               </form>
               {{else}}
-              <form action="/replies/{{this.id}}/like" method="POST">
+              <form action="/users/replies/{{this.id}}/like" method="POST">
+                <input type="text" class="d-none" name="meowId" value="{{this.meowId}}">
                 <button type="submit" class="text-12px-reg-gray">
                   讚
                 </button>
@@ -39,7 +44,32 @@
             </div>
           </div>
         </div>
+
+        {{else}}
+        <div class="reply">
+          <div class="user-avatar">
+            <img src="{{this.User.avatar}}" alt="User Avatar">
+          </div>
+          <div class="reply-stuff">
+            <div class="reply-text">
+              <span class="reply-account text-14px-med">{{this.User.account}}</span><br>
+              <span class="reply-content">{{this.comment}}</span>
+            </div>
+            <div class="reply-data-row">
+              <div>
+                <button type="button" style="text-12px-reg-light">
+                  讚
+                </button>
+              </div>
+              <span class="text-12px-reg-gray ms-4">{{relativeTime this.createdAt}}</span>
+            </div>
+          </div>
+        </div>
+        {{/if}}
+
         {{/each}}
+
+
       </div>
 
     </div>
