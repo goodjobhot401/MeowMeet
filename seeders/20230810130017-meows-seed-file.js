@@ -31,7 +31,7 @@ module.exports = {
         latitude: 25.049520,
         longitude: 121.576084,
         intro: '有虎媽的咪寶',
-        user_id: 1,
+        user_id: 3,
         created_at: new Date(),
         updated_at: new Date()
       },
@@ -47,7 +47,7 @@ module.exports = {
         latitude: 25.050472,
         longitude: 121.578444,
         intro: '會出爪!! 有時候蠻兇',
-        user_id: 1,
+        user_id: 3,
         created_at: new Date(),
         updated_at: new Date()
       },
