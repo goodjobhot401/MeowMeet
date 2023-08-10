@@ -9,6 +9,7 @@ const session = require('express-session')
 const flash = require('connect-flash')
 const helpers = require('./_helpers')
 const passport = require('./config/passport')
+const redisStore = require('./config/redis')
 const handlebarsHelper = require('./helpers/handlebar-helpers')
 const routes = require('./routes')
 const googleApi = require('./googleApi')
@@ -20,6 +21,7 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: hand
 app.set('view engine', 'hbs')
 
 app.use(session({
+  store: redisStore,
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true
@@ -35,8 +37,6 @@ app.use((req, res, next) => {
   res.locals.error_messages = req.flash('error_messages')
   res.locals.warning_messages = req.flash('warning_messages')
   res.locals.user = helpers.getUser(req)
-  // console.log('這是 req.user:' + JSON.stringify(req.user))
-  // console.log('這是 helpers.getUser(user):' + JSON.stringify(helpers.getUser(req)))
   res.locals.googleMapsApiKey = googleApi.googleMapsApiKey
   next()
 })
