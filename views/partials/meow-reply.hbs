@@ -29,14 +29,14 @@
               <form action="/users/replies/{{this.id}}/unlike" method="POST">
                 <input type="text" class="d-none" name="meowId" value="{{this.meowId}}">
                 <button type="submit" class="text-12px-reg-light">
-                  讚
+                  <i class="fa-solid fa-heart" style="color: #ff5290;"></i>
                 </button>
               </form>
               {{else}}
               <form action="/users/replies/{{this.id}}/like" method="POST">
                 <input type="text" class="d-none" name="meowId" value="{{this.meowId}}">
                 <button type="submit" class="text-12px-reg-gray">
-                  讚
+                  <i class="fa-regular fa-heart"></i>
                 </button>
               </form>
               {{/if}}
@@ -58,7 +58,7 @@
             <div class="reply-data-row">
               <div>
                 <button type="button" style="text-12px-reg-light">
-                  讚
+                  <i class="fa-regular fa-heart"></i>
                 </button>
               </div>
               <span class="text-12px-reg-gray ms-4">{{relativeTime this.createdAt}}</span>
