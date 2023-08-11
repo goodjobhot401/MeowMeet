@@ -1,0 +1,32 @@
+<div class="singnin-panel" style="width: 40%; margin: 100px auto auto auto;">
+  {{!-- Logo --}}
+  <div class="signin-logo d-flex justify-content-center mb-3">
+    <img src="https://i.imgur.com/XiQgDhK.png" class="signin-logo-img" alt="">
+  </div>
+
+  <form class="form-control mb-4" action="/signin" method="POST" style="position: relative; margin: 0 auto;">
+
+    {{!-- 帳號 --}}
+    <div class="form-row mb-2 pb-2">
+      <label class="form-label text-14px-reg color-dark-80 mb-2" for="account"><i class="fa-solid fa-paw me-1"
+          style="color: #ff9728;"></i>帳號</label>
+      <input class="form-input text-16px-reg" id="account" type="text" name="account" placeholder="請輸入您的帳號... "
+        value="{{ account }}" required>
+    </div>
+
+    {{!-- 密碼 --}}
+    <div class="form-row mb-2 pb-2">
+      <label class="form-label text-14px-reg color-dark-80 mb-2" for="password"><i class="fa-solid fa-paw me-1"
+          style="color: #ff9728;"></i>密碼</label>
+      <input class="form-input text-16px-reg" id="password" type="password" name="password" placeholder="請輸入您的密碼..."
+        value="{{ password }}" required>
+    </div>
+
+    {{!-- 登入 --}}
+    <div class="d-flex justify-content-center relative mt-2 mb-2">
+      <button class="pill-default pill-green" id="sign-in-button" type="submit" style="margin-top: 8px;">登入</button>
+      <a href="/signup" class="text-12px-reg-gray signup-btn">未有帳號?點我註冊</a>
+    </div>
+  </form>
+
+</div>

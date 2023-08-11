@@ -1,0 +1,36 @@
+<div class="col-6 relative">
+  <div id="carousel" class="carousel carousel-fixed slide">
+    <div class="carousel-inner">
+      <div class="carousel-item relative active">
+        <span class="carousel-creator text-16px-reg-pink"><i class="fa-solid fa-paw me-1" style="color: #ff5290;"></i>
+          {{meow.User.account}} 建立</span>
+        <img src="{{meow.avatar}}" class="d-block carousel-img" alt="...">
+      </div>
+
+      {{!-- 依傳入資料進行多張預覽 --}}
+      {{#each image}}
+      <div class="carousel-item relative">
+        <span class="carousel-creator text-16px-reg-pink"><i class="fa-solid fa-paw me-1"
+            style="color: #ff5290;"></i>{{this.User.account}} 提供</span>
+        <img src="{{this.image}}" class="d-block carousel-img" alt="...">
+      </div>
+      {{/each}}
+
+    </div>
+
+    {{!-- 左右按紐 --}}
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  {{!-- 上傳按紐 --}}
+  <button type="button" class="carousel-upload-btn" data-bs-toggle="modal" data-bs-target="#carouselUploadModal">
+    <img src="https://i.imgur.com/fGDsMae.png" class="carousel-circle" alt="">
+  </button>
+</div>

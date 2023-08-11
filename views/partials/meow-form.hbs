@@ -1,0 +1,187 @@
+{{!-- 街貓暱稱 --}}
+<div class="form-row mb-2 pb-2">
+  <label class="form-label text-14px-reg color-dark-80 mb-2" for="name"><i class="fa-solid fa-paw me-1"
+      style="color: #ff9728;"></i>街貓暱稱</label>
+  <input class="form-input text-16px-reg" id="name" type="text" name="name" placeholder="請輸入街貓暱稱"
+    value="{{ meow.name }}" required>
+</div>
+
+{{!-- 上傳頭貼 --}}
+<div class="form-row mb-2">
+  <label class="form-label text-14px-reg color-dark-80" for="avatar"><i class="fa-solid fa-paw me-1"
+      style="color: #ff9728;"></i>上傳頭貼</label>
+  <input class="form-input btn btn-outline-orange" type="file" name="avatar" id="avatar" value="{{ meow.avatar }}"
+    required>
+</div>
+
+{{!-- 性別 --}}
+<div class="form-row mb-2">
+  <fieldset class="form-group mb-1" id="gender" name="gender">
+    <legend class="form-label text-14px-reg color-dark-80" for="gender"><i class="fa-solid fa-paw me-1"
+        style="color: #ff9728;"></i>性別</legend>
+    <div class="d-flex mt-1">
+      <div class="form-check form-check-inline">
+        <input class="" name="gender" type="radio" id="male" value="male" {{#ifCond meow.gender 'male' }} checked
+          {{else}}{{/ifCond}}>
+        <label class="form-check-label text-14px-reg color-dark-80" for="male">
+          公
+        </label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="" name="gender" type="radio" id="female" value="female" {{#ifCond meow.gender 'female' }} checked
+          {{else}}{{/ifCond}}>
+        <label class="form-check-label text-14px-reg color-dark-80" for="female">
+          母
+        </label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="" name="gender" type="radio" id="unknown" value="unknown" {{#ifCond meow.gender 'unknown' }}
+          checked {{else}}{{/ifCond}}>
+        <label class="form-check-label text-14px-reg color-dark-80" for="unknown">
+          不清楚
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<!-- 結紮 -->
+<div class="form-row mb-2">
+  <fieldset class="form-group mb-1" id="neuter" name="neuter">
+    <legend class="form-label text-14px-reg color-dark-80" for="neuter"><i class="fa-solid fa-paw me-1"
+        style="color: #ff9728;"></i>結紮</legend>
+    <div class="d-flex mt-1">
+      <div class="form-check form-check-inline">
+        <input class="" name="neuter" type="radio" id="neuterd" value="neutered" {{#ifCond meow.neuter 'neutered' }}
+          checked {{else}}{{/ifCond}}>
+        <label class="form-check-label text-14px-reg color-dark-80" for="neutered">
+          已結紮
+        </label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="" name="neuter" type="radio" id="unNeutered" value="unNeutered" {{#ifCond meow.neuter 'unNeutered'
+          }} checked {{else}}{{/ifCond}}>
+        <label class="form-check-label text-14px-reg color-dark-80" for="unNeutered">
+          未結紮
+        </label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="" name="neuter" type="radio" id="unknown" value="unknown" {{#ifCond meow.neuter 'unknown' }}
+          checked {{else}}{{/ifCond}}>
+        <label class="form-check-label text-14px-reg color-dark-80" for="unknown">
+          不清楚
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+{{!-- 親人程度 --}}
+<div class="form-row mb-2">
+  <fieldset class="form-group mb-1" id="friendly" name="friendly">
+    <legend class="form-label text-14px-reg color-dark-80" for="friendly"><i class="fa-solid fa-paw me-1"
+        style="color: #ff9728;"></i>親人程度</legend>
+    <div class="d-flex mt-1">
+      <div class="form-check form-check-inline">
+        <input class="" name="friendly" type="radio" id="1" value="1" {{#ifCond meow.friendly 1 }} checked
+          {{else}}{{/ifCond}}>
+        <label class="form-check-label text-14px-reg color-dark-80" for="1">
+          1 極不親
+        </label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="" name="friendly" type="radio" id="2" value="2" {{#ifCond meow.friendly 2 }} checked
+          {{else}}{{/ifCond}}>
+        <label class="form-check-label text-14px-reg color-dark-80" for="2">
+          2 稍微不親
+        </label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="" name="friendly" type="radio" id="3" value="3" {{#ifCond meow.friendly 3 }} checked
+          {{else}}{{/ifCond}}>
+        <label class="form-check-label text-14px-reg color-dark-80" for="3">
+          3 普通
+        </label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="" name="friendly" type="radio" id="4" value="4" {{#ifCond meow.friendly 4 }} checked
+          {{else}}{{/ifCond}}>
+        <label class="form-check-label text-14px-reg color-dark-80" for="4">
+          4 稍微親人
+        </label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="" name="friendly" type="radio" id="5" value="5" {{#ifCond meow.friendly 5 }} checked
+          {{else}}{{/ifCond}}>
+        <label class="form-check-label text-14px-reg color-dark-80" for="5">
+          5 極親人
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+{{!-- 花色 --}}
+<div class="form-row mb-2 pb-2">
+  <label class="form-label text-14px-reg color-dark-80 mb-2" for="color"><i class="fa-solid fa-paw me-1"
+      style="color: #ff9728;"></i>花色</label>
+  <select class="form-control" id="color" name="color" required>
+    <option value="白貓" {{#ifCond meow.color '白貓' }}selected{{/ifCond}}>白貓</option>
+    <option value="黑貓" {{#ifCond meow.color '黑貓' }}selected{{/ifCond}}>黑貓</option>
+    <option value="橘貓" {{#ifCond meow.color '橘貓' }}selected{{/ifCond}}>橘貓</option>
+    <option value="賓士貓" {{#ifCond meow.color '賓士貓' }}selected{{/ifCond}}>賓士貓</option>
+    <option value="三花貓" {{#ifCond meow.color '三花貓' }}selected{{/ifCond}}>三花貓</option>
+    <option value="玳瑁貓" {{#ifCond meow.color '玳瑁貓' }}selected{{/ifCond}}>玳瑁貓</option>
+    <option value="白底虎班" {{#ifCond meow.color '白底虎班' }}selected{{/ifCond}}>白底虎班</option>
+    <option value="灰底虎班" {{#ifCond meow.color '灰底虎班' }}selected{{/ifCond}}>灰底虎班</option>
+    <option value="棕底虎班" {{#ifCond meow.color '棕底虎班' }}selected{{/ifCond}}>棕底虎班</option>
+    <option value="其他" {{#ifCond meow.color '其他' }}selected{{/ifCond}}>其他</option>
+  </select>
+</div>
+
+{{!-- 預估年紀 --}}
+<div class="form-row mb-2 pb-2">
+  <label class="form-label text-14px-reg color-dark-80 mb-2" for="age"><i class="fa-solid fa-paw me-1"
+      style="color: #ff9728;"></i>預估年紀</label>
+  <input class="form-input text-16px-reg" id="age" name="age" placeholder="請輸入預估年紀" value="{{ meow.age }}" required>
+</div>
+
+{{!-- 出沒地址 --}}
+<div class="form-row mb-2 pb-2">
+  <label class="form-label text-14px-reg color-dark-80 mb-2" for="location">
+    <i class="fa-solid fa-paw me-1" style="color: #ff9728;"></i>
+    出沒地址
+    <span class="text-12px-reg-light">(點選定位查詢經緯度)</span>
+  </label>
+  <div class="d-flex flex-wrap mt-1 align-items-center">
+    <div class="ms-3">
+      <span class="text-12px-reg color-dark-80">緯度</span>
+      <input type="text" id="latitudeInput" name="latitude" value="{{meow.latitude}}" readonly required>
+    </div>
+    <div class="ms-3">
+      <span class="text-12px-reg color-dark-80">經度</span>
+      <input type="text" id="longitudeInput" name="longitude" value="{{meow.longitude}}" readonly required>
+    </div>
+    <div class="ms-3">
+      <button type="button" class="findLocationModal pill-small pill-green pt-0" data-bs-toggle="modal"
+        data-bs-target="#findLocationModal">定位
+      </button>
+    </div>
+    <input class="d-none" id="locationInput" type="text" name="location" value="{{meow.location}}">
+  </div>
+</div>
+
+{{!-- 簡介 --}}
+<div class="form-row mb-2 pb-2">
+  <label class="form-label text-14px-reg color-dark-80 mb-2" for="intro"><i class="fa-solid fa-paw me-1"
+      style="color: #ff9728;"></i>簡介</label>
+  <textarea class="form-control text-16px-reg" id="intro" name="intro" style="height: 100px;"
+    required>{{ meow.intro }}</textarea>
+</div>

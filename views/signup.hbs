@@ -1,0 +1,57 @@
+<div class="singnup-panel mt-3" style="width: 50%; margin: 0 auto;">
+
+  {{!-- Logo --}}
+  <div class="brand-logo mb-3 d-flex justify-content-center">
+    <img src="https://i.imgur.com/XiQgDhK.png" class="brand-logo-img" alt="">
+  </div>
+
+  <form class="form-control mb-4" action="/signup" method="POST" style="position: relative; margin: 0 auto;">
+
+    {{!-- 帳號 --}}
+    <div class="form-row mb-2 pb-2">
+      <label class="form-label text-14px-reg color-dark-80 mb-2" for="account"><i class="fa-solid fa-paw me-1"
+          style="color: #ff9728;"></i>帳號</label>
+      <input class="form-input text-16px-reg" id="account" type="text" name="account"
+        placeholder="請輸入您的帳號... 例如: welovecat9527.." value="{{ account }}" required>
+    </div>
+
+    {{!-- 暱稱 --}}
+    <div class="form-row mb-2 pb-2">
+      <label class="form-label text-14px-reg color-dark-80 mb-2" for="name"><i class="fa-solid fa-paw me-1"
+          style="color: #ff9728;"></i>暱稱</label>
+      <input class="form-input text-16px-reg" id="name" type="text" name="name" placeholder="請輸入您的暱稱..."
+        value="{{ name }}" required>
+    </div>
+
+    {{!-- 信箱 --}}
+    <div class="form-row mb-2 pb-2">
+      <label class="form-label text-14px-reg color-dark-80 mb-2" for="email"><i class="fa-solid fa-paw me-1"
+          style="color: #ff9728;"></i>Email</label>
+      <input class="form-input text-16px-reg" id="email" type="email" name="email" placeholder="請輸入您的電子信箱..."
+        value="{{ email }}" required>
+    </div>
+
+    {{!-- 密碼 --}}
+    <div class="form-row mb-2 pb-2">
+      <label class="form-label text-14px-reg color-dark-80 mb-2" for="password"><i class="fa-solid fa-paw me-1"
+          style="color: #ff9728;"></i>密碼</label>
+      <input class="form-input text-16px-reg" id="password" type="password" name="password" placeholder="請輸入您的密碼..."
+        value="{{ password }}" required>
+    </div>
+
+    {{!-- 確認密碼 --}}
+    <div class="form-row mb-2 pb-2">
+      <label class="form-label text-14px-reg color-dark-80 mb-2" for="checkPassword"><i class="fa-solid fa-paw me-1"
+          style="color: #ff9728;"></i>確認密碼</label>
+      <input class="form-input text-16px-reg" id="checkPassword" type="password" name="checkPassword"
+        placeholder="請再次輸入您的密碼..." value="{{ checkPassword }}" required>
+    </div>
+
+    {{!-- 註冊 --}}
+    <div class="d-flex justify-content-center relative mt-2 mb-2">
+      <button class="pill-default pill-green" id="sign-up-button" type="submit" style="margin-top: 8px;">註冊</button>
+      <a href="/signin" class="text-12px-reg-gray signup-btn">已有帳號?點我登入</a>
+    </div>
+  </form>
+
+</div>

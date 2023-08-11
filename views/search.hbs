@@ -1,0 +1,32 @@
+<div class="search-zone mt-3" style="width: 90%; margin: 0 auto;">
+  {{!-- 搜尋欄 --}}
+  <div class="search-bar mb-3 d-flex">
+    <input type="text" name="address" id="search-form" class="form-input input text-16px-reg me-3"
+      placeholder="輸入想查詢的地址">
+    <button class="pill-green pill-small" id="search-button" type="submit">查詢</button>
+  </div>
+
+  {{!-- google map viewport --}}
+  <div id="map" class="mb-3 border"></div>
+  <script> var map
+    var icon
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 25.03369, lng: 121.564128 },
+        zoom: 12
+      })
+    }
+  </script>
+
+  {{!-- 搜尋結果欄 --}}
+  <div class="search-panel mb-3 shadow-sm card" style="min-height: 300px;">
+    <div class="card-header text-center" style="background-color: #ff9728;">
+      <i class="fa-solid fa-paw me-1" style="color: #ffffff;"></i>
+      <span class="text-16px-reg-white">搜尋結果</span>
+    </div>
+    <div class="card-body d-flex flex-wrap justify-content-evenly" id="searchResultsContainer">
+
+    </div>
+  </div>
+
+</div>

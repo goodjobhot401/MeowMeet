@@ -1,0 +1,31 @@
+{{!-- 我新增的協尋區 --}}
+<div class="missings-panel mb-3 shadow-sm card" style="height: 100%;">
+  <div class="card-header" style="background-color: #59f487;">
+    <i class="fa-solid fa-paw me-1" style="color: #ffffff;"></i>
+    <span class="text-16px-reg-white">我建立的協尋檔案</span>
+  </div>
+  {{#if missing}}
+  <div class="card-body d-flex flex-wrap align-content-start" id="">
+
+    {{#each missing}}
+    <div class="col-6 p-2" style="height: 200px;">
+      <div class="card meow-card d-flex flex-column justify-content-center align-items-center"
+        style="border-radius:5px; height: 100%;">
+        <figure class="missing-meow-figure">
+          <img src="{{this.avatar}}" class="missing-meow-img" alt="">
+        </figure>
+        <div class="missing-name">
+          <span class="text-16px-reg-light">{{this.name}}</span>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+
+  </div>
+  {{else}}
+  <div class="card-body no-data d-flex flex-wrap" id="">
+    <a href="/users/missings/create"><span class="text-16px-med-gray bulid-one"><i class="fa-regular fa-square-plus"
+          style="color: #59f487;"></i> Missing</span></a>
+  </div>
+  {{/if}}
+</div>

@@ -1,0 +1,18 @@
+<div class="search-zone mt-3" style="width: 65%; margin: 0 auto;">
+
+  {{> map-modal}}
+  <div class="button-back mb-3 d-flex flex-row-reverse">
+    <a href="javascript:history.back()" class="pill-green pill-small">返回</a>
+  </div>
+
+  <form class="form-control mb-4" action="/meows/{{meow.id}}/edit?_method=PUT" method="POST"
+    enctype="multipart/form-data" style="position: relative; margin: 0 auto;">
+    {{> meow-form}}
+
+    {{!-- 修改檔案 --}}
+    <div class="d-flex justify-content-center">
+      <button class="pill-default pill-green mt-3 mb-3" id="edit-button" type="submit">修改檔案</button>
+    </div>
+  </form>
+
+</div>

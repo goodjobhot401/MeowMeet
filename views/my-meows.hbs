@@ -1,0 +1,19 @@
+<div class="my-meows mt-5 ms-5 mb-5" style="width: 90%;">
+  {{> delete-meow-modal}}
+  {{> delete-image-modal}}
+  <div class="row">
+
+    <div class="col-8">
+      {{!-- 我新增的街貓區 --}}
+      {{>my-meows-meow}}
+      {{!-- 我新增的街貓照片區 --}}
+      {{>my-meows-image}}
+    </div>
+
+    <div class="col-4">
+      {{!-- 我新增的協尋區 --}}
+      {{!-- {{>my-meows-missing}} --}}
+    </div>
+
+  </div>
+</div>

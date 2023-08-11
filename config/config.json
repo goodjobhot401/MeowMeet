@@ -1,0 +1,16 @@
+{
+  "development": {
+    "username": "root",
+    "password": "password",
+    "database": "meowmeet",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "admin",
+    "password": 12345678,
+    "database": "meowmeet",
+    "host": "meow-meet-database.cuylhjnd97yt.ap-northeast-1.rds.amazonaws.com",
+    "dialect": "mysql"
+  }
+}
