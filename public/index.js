@@ -206,19 +206,19 @@ function renderSearchResults(data) {
     const li2 = document.createElement('li')
     li2.className = 'list-group-item'
     li2.innerHTML = `<span class="text-14px-reg"><i class="fa-solid fa-paw me-1"
-      style="color: #ff5290;"></i>親人：</span>`
+      style="color: #774f10;"></i>親人：</span>`
     const friendly = meow.friendly
     for (let i = 0; i < friendly; i++) {
       const heart = document.createElement('i')
       heart.className = 'fa-solid fa-heart me-1'
-      heart.style.color = '#ff5290'
+      heart.style.color = '#ff9728'
       li2.appendChild(heart)
     }
 
     const li3 = document.createElement('li')
     li3.className = 'list-group-item'
     li3.innerHTML = `<span class="text-14px-reg"><i class="fa-solid fa-paw me-1"
-      style="color: #ff5290;"></i>簡介：<br>${meow.intro}</span>`
+      style="color: #774f10;"></i>簡介：<br>${meow.intro}</span>`
 
     ul.appendChild(li1)
     ul.appendChild(li2)

@@ -14,7 +14,7 @@ module.exports = {
   generateIcons: function (number) {
     let icons = ''
     for (let i = 0; i < number; i++) {
-      icons += '<i class="fa-brands fa-gratipay me-1" style="color: #ff5290;"></i>'
+      icons += '<i class="fa-brands fa-gratipay me-1" style="color: #59f487;"></i>'
     }
     return icons
   },

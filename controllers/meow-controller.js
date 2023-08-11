@@ -1,4 +1,5 @@
 const { Meow, User, Reply, Like, meowImage, LikeOfReply } = require('../models')
+const db = require('../models/index')
 const { imgurFileHandler } = require('../helpers/file-helpers')
 
 const meowController = {
@@ -68,14 +69,23 @@ const meowController = {
         return
       }
 
-      const promises = [
-        Reply.destroy({ where: { meowId } }),
+      const destroyPromises = [
+        LikeOfReply.destroy({
+          where: {
+            replyId: {
+              [db.Sequelize.Op.in]: db.Sequelize.literal(
+                `(SELECT id FROM Replies WHERE meow_id = ${meowId})`
+              )
+            }
+          }
+        }),
         Like.destroy({ where: { meowId } }),
         meowImage.destroy({ where: { meowId } }),
+        Reply.destroy({ where: { meowId } }),
         meow.destroy()
       ]
 
-      await Promise.all(promises)
+      await Promise.all(destroyPromises)
 
       req.flash('success_messages', '街貓檔案刪除成功')
       res.redirect(`/meows/${loginUserId}/myMeows`)

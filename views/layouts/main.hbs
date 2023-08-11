@@ -40,7 +40,7 @@
   <main class="d-flex flex-column pt-5" role="main" style="height: 100%;">
     <div class="row flex-grow-1 pt-2" style="height: 100%;">
       {{!-- 左側欄位 --}}
-      <div class="col-2 p-0 flex-column relative bg-secondary bg-opacity-10" style="flex: 0 0 auto;">
+      <div class="col-2 p-0 flex-column relative" style="border-right:1px solid #dddddd;; flex: 0 0 auto;">
         {{> profile}}
       </div>
       {{!-- 中間欄位 --}}
@@ -79,7 +79,7 @@
       {{!-- 左側欄位 --}}
       {{#if closeColumn}}
       {{else}}
-      <div class="col-2 p-0 flex-column relative bg-secondary bg-opacity-10" style="flex: 0 0 auto;">
+      <div class="col-2 p-0 flex-column relative" style="border-right:1px solid #dddddd; flex: 0 0 auto;">
         {{> profile}}
       </div>
       {{/if}}

@@ -1,7 +1,7 @@
 {{!-- 街貓暱稱 --}}
 <div class="form-row mb-2 pb-2">
   <label class="form-label text-14px-reg color-dark-80 mb-2" for="name"><i class="fa-solid fa-paw me-1"
-      style="color: #ff5290;"></i>街貓暱稱</label>
+      style="color: #ff9728;"></i>街貓暱稱</label>
   <input class="form-input text-16px-reg" id="name" type="text" name="name" placeholder="請輸入街貓暱稱"
     value="{{ meow.name }}" required>
 </div>
@@ -9,8 +9,8 @@
 {{!-- 上傳頭貼 --}}
 <div class="form-row mb-2">
   <label class="form-label text-14px-reg color-dark-80" for="avatar"><i class="fa-solid fa-paw me-1"
-      style="color: #ff5290;"></i>上傳頭貼</label>
-  <input class="form-input btn btn-outline-main" type="file" name="avatar" id="avatar" value="{{ meow.avatar }}"
+      style="color: #ff9728;"></i>上傳頭貼</label>
+  <input class="form-input btn btn-outline-orange" type="file" name="avatar" id="avatar" value="{{ meow.avatar }}"
     required>
 </div>
 
@@ -18,7 +18,7 @@
 <div class="form-row mb-2">
   <fieldset class="form-group mb-1" id="gender" name="gender">
     <legend class="form-label text-14px-reg color-dark-80" for="gender"><i class="fa-solid fa-paw me-1"
-        style="color: #ff5290;"></i>性別</legend>
+        style="color: #ff9728;"></i>性別</legend>
     <div class="d-flex mt-1">
       <div class="form-check form-check-inline">
         <input class="" name="gender" type="radio" id="male" value="male" {{#ifCond meow.gender 'male' }} checked
@@ -51,7 +51,7 @@
 <div class="form-row mb-2">
   <fieldset class="form-group mb-1" id="neuter" name="neuter">
     <legend class="form-label text-14px-reg color-dark-80" for="neuter"><i class="fa-solid fa-paw me-1"
-        style="color: #ff5290;"></i>結紮</legend>
+        style="color: #ff9728;"></i>結紮</legend>
     <div class="d-flex mt-1">
       <div class="form-check form-check-inline">
         <input class="" name="neuter" type="radio" id="neuterd" value="neutered" {{#ifCond meow.neuter 'neutered' }}
@@ -83,7 +83,7 @@
 <div class="form-row mb-2">
   <fieldset class="form-group mb-1" id="friendly" name="friendly">
     <legend class="form-label text-14px-reg color-dark-80" for="friendly"><i class="fa-solid fa-paw me-1"
-        style="color: #ff5290;"></i>親人程度</legend>
+        style="color: #ff9728;"></i>親人程度</legend>
     <div class="d-flex mt-1">
       <div class="form-check form-check-inline">
         <input class="" name="friendly" type="radio" id="1" value="1" {{#ifCond meow.friendly 1 }} checked
@@ -131,7 +131,7 @@
 {{!-- 花色 --}}
 <div class="form-row mb-2 pb-2">
   <label class="form-label text-14px-reg color-dark-80 mb-2" for="color"><i class="fa-solid fa-paw me-1"
-      style="color: #ff5290;"></i>花色</label>
+      style="color: #ff9728;"></i>花色</label>
   <select class="form-control" id="color" name="color" required>
     <option value="白貓" {{#ifCond meow.color '白貓' }}selected{{/ifCond}}>白貓</option>
     <option value="黑貓" {{#ifCond meow.color '黑貓' }}selected{{/ifCond}}>黑貓</option>
@@ -149,14 +149,14 @@
 {{!-- 預估年紀 --}}
 <div class="form-row mb-2 pb-2">
   <label class="form-label text-14px-reg color-dark-80 mb-2" for="age"><i class="fa-solid fa-paw me-1"
-      style="color: #ff5290;"></i>預估年紀</label>
+      style="color: #ff9728;"></i>預估年紀</label>
   <input class="form-input text-16px-reg" id="age" name="age" placeholder="請輸入預估年紀" value="{{ meow.age }}" required>
 </div>
 
 {{!-- 出沒地址 --}}
 <div class="form-row mb-2 pb-2">
   <label class="form-label text-14px-reg color-dark-80 mb-2" for="location">
-    <i class="fa-solid fa-paw me-1" style="color: #ff5290;"></i>
+    <i class="fa-solid fa-paw me-1" style="color: #ff9728;"></i>
     出沒地址
     <span class="text-12px-reg-light">(點選定位查詢經緯度)</span>
   </label>
@@ -170,7 +170,7 @@
       <input type="text" id="longitudeInput" name="longitude" value="{{meow.longitude}}" readonly required>
     </div>
     <div class="ms-3">
-      <button type="button" class="findLocationModal pill-small pill-main pt-0" data-bs-toggle="modal"
+      <button type="button" class="findLocationModal pill-small pill-green pt-0" data-bs-toggle="modal"
         data-bs-target="#findLocationModal">定位
       </button>
     </div>
@@ -181,7 +181,7 @@
 {{!-- 簡介 --}}
 <div class="form-row mb-2 pb-2">
   <label class="form-label text-14px-reg color-dark-80 mb-2" for="intro"><i class="fa-solid fa-paw me-1"
-      style="color: #ff5290;"></i>簡介</label>
+      style="color: #ff9728;"></i>簡介</label>
   <textarea class="form-control text-16px-reg" id="intro" name="intro" style="height: 100px;"
     required>{{ meow.intro }}</textarea>
 </div>

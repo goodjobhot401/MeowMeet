@@ -182,7 +182,7 @@ textarea:focus {
 }
 
 .fa-cat {
-  color: #92929D;
+  color: #59f487;
 }
 
 .carousel-creator {
@@ -223,7 +223,7 @@ textarea:focus {
   width: 40px;
   height: 40px;
   background-color: #ffffff;
-  color: #ff5290;
+  color: #ff9728;
   box-shadow: #f5f5f5;
   border-radius: 50%;
   display: flex;
@@ -256,7 +256,7 @@ textarea:focus {
 }
 
 .overflow-360::-webkit-scrollbar-thumb {
-  background-color: #ff73a2;
+  background-color: #ff9728;
   border-radius: 5px;
 }
 
@@ -265,6 +265,7 @@ textarea:focus {
 }
 
 .search-card {
+  border: 2px solid #ff9728;
   transition: transform 0.3s ease;
 }
 
@@ -431,12 +432,12 @@ textarea:focus {
 
 .meow-data-top {
   background-color: #FFFFFF;
-  border: 3px solid #f97fac;
+  border: 3px solid #59f487;
   border-radius: 40px;
 }
 
 .meow-title {
-  border: 4px solid #ff5290;
+  border: 4px solid #59f487;
   border-radius: 50px;
 }
 
@@ -477,7 +478,7 @@ textarea:focus {
 }
 
 .reply-data {
-  background-color: lightblue;
+  background-color: #ff9728;
   border-radius: 5px 5px 0 0;
   line-height: 30px;
 }
@@ -535,7 +536,7 @@ textarea:focus {
   border: none;
   border-radius: 3px;
   color: white;
-  background-color: #1877f2;
+  background-color: #ff9728;
   cursor: pointer;
 }
 
@@ -574,7 +575,7 @@ textarea:focus {
 }
 
 .reply-text {
-  background-color: #ccddf6;
+  background-color: #f5ee39;
   display: inline-block;
   padding: 8px;
   border-radius: 5px;
@@ -649,7 +650,7 @@ h6:hover {
   text-decoration: none;
   padding: 5px;
   color: #ffffff;
-  background: #FF5290;
+  background: #59f487;
   border-radius: 5px;
   transform: scale(1.2);
   transform-origin: center;
@@ -700,7 +701,7 @@ h6:hover>i {
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
-  color: #FF5290;
+  color: #59f487;
 }
 
 .text-14px-reg {
@@ -745,7 +746,7 @@ h6:hover>i {
   font-weight: 400;
   font-size: 12px;
   line-height: 20px;
-  color: #FF5290;
+  color: #ff9728;
 }
 
 .text-12px-med {
@@ -763,7 +764,34 @@ h6:hover>i {
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  color: #FF5290;
+  color: #ff9728;
+}
+
+.text-16px-reg-white {
+  font-family: 'Noto Sans TC';
+  font-style: Medium;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+}
+
+.text-16px-reg-pink {
+  font-family: 'Noto Sans TC';
+  font-style: Medium;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ff5290
+}
+
+.text-16px-reg-dark {
+  font-family: 'Noto Sans TC';
+  font-style: Medium;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #774f10;
 }
 
 .text-16px-reg-account {
@@ -924,21 +952,33 @@ button {
   color: #fff
 }
 
+.pill-green {
+  background: #59f487;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.pill-green:hover {
+  transform: scale(1.1);
+  transform-origin: center;
+  color: #fff;
+}
+
 .pill-outline {
   border: 1px solid #FF5290;
   color: #FF5290
 }
 
 .btn-pill-main {
-  border: 1px solid #FF5290;
-  background-color: #FF5290;
+  border: 1px solid #ff9728;
+  background-color: #ff9728;
   color: #FFFFFF;
 }
 
 .btn-pill-main:hover {
-  border: 1px solid #FF5290;
+  border: 1px solid #ff9728;
   background-color: #FFFFFF;
-  color: #FF5290;
+  color: #ff9728;
 }
 
 .btn-outline-main:hover {
@@ -946,12 +986,24 @@ button {
   color: #FFFFFF;
 }
 
+.btn-outline-orange:hover {
+  background-color: #ff9728;
+}
+
+.btn-outline-light {
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 400;
+  border: 1px solid #ff9728;
+  color: #ff9728;
+}
+
 .btn-outline-light:hover {
   background-color: #ffffff;
   font-family: 'Noto Sans TC';
   font-style: normal;
   font-weight: 500;
-  color: #ff5290;
+  color: #ff9728;
 }
 
 .signup-btn {
