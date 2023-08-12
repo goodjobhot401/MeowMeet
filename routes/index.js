@@ -35,6 +35,11 @@ router.post('/signup', userController.signUp)
 // 登出
 router.get('/logout', userController.logout)
 
+// 轉至搜尋頁
+router.get('/', (req, res, next) => {
+  res.redirect('/search')
+})
+
 // 錯誤處理
 router.use('/api', apiErrorHandler)
 router.use('/', generalErrorHandler)
