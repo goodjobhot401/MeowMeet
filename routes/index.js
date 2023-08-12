@@ -38,7 +38,7 @@ router.get('/logout', userController.logout)
 // 轉至搜尋頁
 router.get('/', (req, res, next) => {
   req.flash('success_messages', '搜尋「松山火車站」開始您的探險吧')
-  res.redirect('/search')
+  res.render('search')
 })
 
 // 錯誤處理
