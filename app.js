@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 app.use(routes)
 
 app.listen(port, () => {
-  console.log(`App is running on http://localhost:${port}`)
+  console.log('App is running now!')
 })
 
 module.exports = app
