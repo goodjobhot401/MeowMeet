@@ -2,6 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    const users = await queryInterface.sequelize.query('SELECT * FROM users;', { type: Sequelize.QueryTypes.SELECT })
     await queryInterface.bulkInsert('meows', [
       {
         name: '虎克',
@@ -15,7 +16,7 @@ module.exports = {
         latitude: 25.049092,
         longitude: 121.577693,
         intro: '胖胖可愛',
-        user_id: 2,
+        user_id: users[1].id,
         created_at: new Date(),
         updated_at: new Date()
       },
@@ -31,7 +32,7 @@ module.exports = {
         latitude: 25.049520,
         longitude: 121.576084,
         intro: '有虎媽的咪寶',
-        user_id: 3,
+        user_id: users[1].id,
         created_at: new Date(),
         updated_at: new Date()
       },
@@ -47,7 +48,7 @@ module.exports = {
         latitude: 25.050472,
         longitude: 121.578444,
         intro: '會出爪!! 有時候蠻兇',
-        user_id: 3,
+        user_id: users[2].id,
         created_at: new Date(),
         updated_at: new Date()
       },
@@ -63,7 +64,7 @@ module.exports = {
         latitude: 25.050978,
         longitude: 121.576277,
         intro: '看到陌生人會躲起來',
-        user_id: 2,
+        user_id: users[2].id,
         created_at: new Date(),
         updated_at: new Date()
       }
