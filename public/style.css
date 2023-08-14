@@ -453,6 +453,58 @@ textarea:focus {
   flex-grow: 1;
 }
 
+.meow-gender:hover::after {
+  content: attr(data-tooltip);
+  width: 100%;
+  position: absolute;
+  background-color: #f5ee39;
+  border-radius: 20px 0 0 0;
+  box-shadow: 1px 2px 5px 0 #c6c6c6;
+  color: white;
+  padding: 5px;
+  white-space: nowrap;
+  left: 50%;
+  transform: translateX(-50%) scale(1.07);
+  transform-origin: center;
+  bottom: 0px;
+  z-index: 1;
+}
+
+
+.meow-neuter:hover::after {
+  content: attr(data-tooltip);
+  width: 100%;
+  position: absolute;
+  background-color: #ffca00;
+  box-shadow: 1px 2px 5px 0 #c6c6c6;
+  color: white;
+  padding: 5px;
+  white-space: nowrap;
+  left: 50%;
+  transform: translateX(-50%) scale(1.07);
+  transform-origin: center;
+  bottom: 0px;
+  z-index: 1;
+}
+
+
+.meow-age:hover::after {
+  content: attr(data-tooltip);
+  width: 100%;
+  position: absolute;
+  background-color: #ff9728;
+  border-radius: 0 20px 0 0;
+  box-shadow: 1px 2px 5px 0 #c6c6c6;
+  color: white;
+  padding: 5px;
+  white-space: nowrap;
+  left: 50%;
+  transform: translateX(-50%) scale(1.07);
+  transform-origin: center;
+  bottom: 0%;
+  z-index: 1;
+}
+
 .meow-bar {
   width: 100%;
 }

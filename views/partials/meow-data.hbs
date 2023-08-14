@@ -10,10 +10,14 @@
     {{!-- 下半部 --}}
     <div class="meow-data-bottom boder">
       <div class="meow-bar d-flex justify-content-center">
-        <div class="meow-gender" style="background-color: #f5ee39; border-radius: 20px 0 0 0;">{{{genderIcon
-          meow.gender}}} </div>
-        <div class="meow-neuter" style="background-color:#ffca00;">{{{neuterIcon meow.neuter}}}</div>
-        <div class="meow-age" style="background-color: #ff9728; border-radius: 0 20px 0 0;">{{meow.age}}
+        <div class="meow-gender relative" style="background-color: #f5ee39; border-radius: 20px 0 0 0;"
+          data-tooltip="性别">
+          {{{genderIcon meow.gender}}} </div>
+        <div class="meow-neuter relative" style="background-color:#ffca00;" data-tooltip="結紮">{{{neuterIcon
+          meow.neuter}}}</div>
+        <div class="meow-age relative" style="background-color: #ff9728; border-radius: 0 20px 0 0;"
+          data-tooltip="預估年紀">
+          {{meow.age}}
         </div>
       </div>
       <div class="meow-detail p-3 mb-2">
