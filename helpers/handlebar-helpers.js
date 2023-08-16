@@ -43,6 +43,20 @@ module.exports = {
     }
   },
 
+  // 依據傳入的 url, 判定回傳 img tag 還是 video tag 與 classname
+  imgOrVideo: function (url, className) {
+    // 找出最後一個點, 並取出附檔名
+    const lastDotIndex = url.lastIndexOf('.')
+    const extension = url.substring(lastDotIndex + 1).toLowerCase()
+    const autoplayAttr = extension === 'mp4' ? 'autoplay muted' : ''
+
+    if (extension === 'mp4') {
+      return `<video src="${url}" class="d-block ${className}" alt="..." ${autoplayAttr}></video>`
+    } else {
+      return `<img src="${url}" class="d-block ${className}" alt="...">`
+    }
+  },
+
   // 人性化時間顯示：ex. 16 hours age
   relativeTime: function (a) {
     return dayjs(a).fromNow()

@@ -42,6 +42,19 @@ if (deleteImageButton) {
       // console.log('這是 result:' + JSON.stringify(result))
 
       modalImageName.textContent = `確定刪除 ${result.Meow.name} 的照片?`
+
+      // 檢查文件類型
+      if (result.image.toLowerCase().endsWith('.mp4')) {
+        modalImage.style.display = 'none'
+        modalVideo.style.display = 'block'
+        modalVideo.src = result.image
+        modalVideo.load()
+      } else {
+        modalVideo.style.display = 'none'
+        modalImage.style.display = 'block'
+        modalImage.src = result.image
+      }
+
       modalImage.src = result.image
       modalImageForm.action = `/meows/${result.id}/image?_method=DELETE`
     })

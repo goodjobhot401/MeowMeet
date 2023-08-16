@@ -12,7 +12,7 @@
     <div class="col-3 p-2">
       <div class="meow-card d-flex" style="width:auto; height: 100px;">
         <a href="{{this.image}}" target="_blank" class="col-6 meow-card-frame">
-          <img src="{{this.image}}" class="meow-upload-img" alt="">
+          {{{imgOrVideo this.image 'meow-upload-img'}}}
         </a>
         {{!-- 右邊資料 --}}
         <div class="col-6 ps-2 meow-upload-simple-data">

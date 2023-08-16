@@ -1086,7 +1086,8 @@ button {
   transform: translate(-50%);
 }
 
-.modalImage {
+.modalImage,
+.modalVideo {
   max-width: 498px;
   max-height: 498px;
   object-fit: cover;
@@ -1094,7 +1095,8 @@ button {
   transition: transform 0.3s ease;
 }
 
-.modalImage:hover {
+.modalImage,
+.modalVideo:hover {
   transform: scale(1.1);
   transform-origin: center;
 }

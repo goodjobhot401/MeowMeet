@@ -12,7 +12,8 @@
       <div class="carousel-item relative">
         <span class="carousel-creator text-16px-reg-pink"><i class="fa-solid fa-paw me-1"
             style="color: #ff5290;"></i>{{this.User.account}} 提供</span>
-        <img src="{{this.image}}" class="d-block carousel-img" alt="...">
+        {{!-- 判定輸出 img 標籤還是 video 標籤--}}
+        {{{imgOrVideo this.image 'carousel-img'}}}
       </div>
       {{/each}}
 
