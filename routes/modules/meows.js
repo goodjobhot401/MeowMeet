@@ -35,7 +35,10 @@ router.post('/:meowId/like', authenticator, meowController.postLike)
 router.post('/:meowId/unlike', authenticator, meowController.postUnlike)
 
 // 上傳街貓照片
-router.post('/:meowId/image', authenticator, upload.single('meowImage'), meowController.postMeowImage)
+// router.post('/:meowId/image', authenticator, upload.single('meowImage'), meowController.postMeowImage)
+
+// 上傳多張街貓照片
+router.post('/:meowId/image', authenticator, upload.array('meowImage', 5), meowController.postMeowImages)
 
 // 刪除街貓照片
 router.delete('/:imageId/image', authenticator, meowController.deleteMeowImage)

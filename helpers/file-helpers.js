@@ -29,7 +29,23 @@ const imgurFileHandler = file => {
       .catch(err => reject(err))
   })
 }
+
+const imgurFilesHandler = async files => {
+  if (!files || files.length === 0) return []
+
+  const uploadedImageUrls = []
+
+  for (const file of files) {
+    const img = await imgur.uploadFile(file.path)
+    if (img?.link) {
+      uploadedImageUrls.push(img.link)
+    }
+  }
+  return uploadedImageUrls
+}
+
 module.exports = {
   localFileHandler,
-  imgurFileHandler
+  imgurFileHandler,
+  imgurFilesHandler
 }
