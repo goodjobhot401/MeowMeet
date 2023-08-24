@@ -66,7 +66,7 @@ $ npm install
 ```
 
 ### 5. 參考 `.env.example` 檔案，重構 `.env` 環境
-- 特別注意需要, 此專案須至 redis labs 申請帳號密碼加入 .env 環境變數中
+- 特別注意需要, 此專案須至 redis labs & imgur 申請帳號密碼並加入 .env 環境變數中
 
 ### 6. 設定資料庫
 - 在 MySQL Workbench 輸入以下指令，
