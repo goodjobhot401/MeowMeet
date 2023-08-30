@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - 'test-meowmeet'
+      - "test-meowmeet"
 
 jobs:
   build:
