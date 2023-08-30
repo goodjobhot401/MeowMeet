@@ -17,7 +17,5 @@ jobs:
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "test-meowmeet"
-          heroku_email: "goodjobhot@gmail.com"
-          branch: "test-meowmeet"
-          remote_branch: "main"
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
 
