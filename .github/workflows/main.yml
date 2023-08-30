@@ -1,0 +1,23 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - test-meowmeet
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        run: echo start checkout code
+      - uses: actions/checkout@v2
+      
+      - name: Deploy to Heroku
+        run: echo start deploy to Heroku
+      - uses: akhileshns/heroku-deploy@v3.12.14
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "test-meowmeet"
+          heroku_email: "goodjobhot@gmail.com"
+          remote_branch: "test-meowmeet"
