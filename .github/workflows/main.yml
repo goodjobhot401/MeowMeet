@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy to Heroku
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - test-meowmeet
 
 jobs:
-  build:
+  heroku-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
